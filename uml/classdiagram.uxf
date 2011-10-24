@@ -277,7 +277,7 @@ service::IService
 -lst_deletedCourses: LinkedList&lt;Course&gt;
 --
 +addCourseToSystem(cr: Course)
-+listAllCoursesFromSystem(): LinkedList&lt;Course&gt;
++getAllCoursesFromSystem(): LinkedList&lt;Course&gt;
 +deleteCourseFromSystem(cr: Course)
 +restoreCourseToSystem(cr: Course)</panel_attributes>
     <additional_attributes/>
