@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="11.3">
-  <zoom_level>3</zoom_level>
+  <zoom_level>6</zoom_level>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>576</x>
-      <y>405</y>
-      <w>75</w>
-      <h>36</h>
+      <x>1152</x>
+      <y>486</y>
+      <w>150</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>entities::Group
 --
@@ -22,10 +22,10 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>675</x>
-      <y>336</y>
-      <w>48</w>
-      <h>30</h>
+      <x>1356</x>
+      <y>372</y>
+      <w>96</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>entities::Lecturer
 --
@@ -37,10 +37,10 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>762</x>
-      <y>357</y>
-      <w>60</w>
-      <h>63</h>
+      <x>1524</x>
+      <y>390</y>
+      <w>120</w>
+      <h>138</h>
     </coordinates>
     <panel_attributes>&lt;&lt;abstract&gt;&gt;
 entities::Person
@@ -61,21 +61,21 @@ entities::Person
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>714</x>
-      <y>345</y>
-      <w>53</w>
-      <h>26</h>
+      <x>1434</x>
+      <y>390</y>
+      <w>102</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>48;21;9;9</additional_attributes>
+    <additional_attributes>90;18;18;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>723</x>
-      <y>444</y>
-      <w>84</w>
-      <h>111</h>
+      <x>1446</x>
+      <y>564</y>
+      <w>168</w>
+      <h>222</h>
     </coordinates>
     <panel_attributes>entities::Student
 --
@@ -105,24 +105,23 @@ entities::Person
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>753</x>
-      <y>393</y>
-      <w>35</w>
-      <h>56</h>
+      <x>1548</x>
+      <y>510</y>
+      <w>30</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>9;9;30;51</additional_attributes>
+    <additional_attributes>18;18;18;54</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>261</x>
-      <y>357</y>
-      <w>120</w>
-      <h>123</h>
+      <x>648</x>
+      <y>324</y>
+      <w>240</w>
+      <h>246</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;abstract&gt;&gt;
-entities::Course
+    <panel_attributes>entities::Course
 --
 -id: int
 -studentCount: int
@@ -151,10 +150,10 @@ entities::Course
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>54</x>
-      <y>438</y>
-      <w>51</w>
-      <h>30</h>
+      <x>108</x>
+      <y>552</y>
+      <w>102</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>service::UniService
 --
@@ -164,39 +163,23 @@ entities::Course
     <additional_attributes/>
   </element>
   <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>423</x>
-      <y>483</y>
-      <w>93</w>
-      <h>21</h>
-    </coordinates>
-    <panel_attributes>entities::UECourse
---
--lst_tutor: LinkedList&lt;Tutor&gt;
--lst_excercise: LinkedList&lt;ExcercisePart&gt;
--lst_group: LinkedList&lt;Group&gt;
---</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>69</x>
-      <y>396</y>
-      <w>14</w>
-      <h>47</h>
+      <x>138</x>
+      <y>468</y>
+      <w>30</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>9;9;9;42</additional_attributes>
+    <additional_attributes>18;18;18;84</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>255</x>
-      <y>177</y>
-      <w>45</w>
-      <h>48</h>
+      <x>510</x>
+      <y>30</y>
+      <w>90</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>default::Test
 --
@@ -208,52 +191,21 @@ entities::Course
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>108</x>
-      <y>216</y>
-      <w>173</w>
-      <h>122</h>
+      <x>216</x>
+      <y>108</y>
+      <w>348</w>
+      <h>246</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>9;117;168;9</additional_attributes>
+    <additional_attributes>18;234;336;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>480</x>
-      <y>327</y>
-      <w>45</w>
-      <h>24</h>
-    </coordinates>
-    <panel_attributes>entities::VOCourse
---
--lecturer: Lecturer
---</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>432</x>
-      <y>378</y>
-      <w>93</w>
-      <h>39</h>
-    </coordinates>
-    <panel_attributes>entities::VUCourse
---
--lecturer: Lecturer
--lst_tutor: LinkedList&lt;Tutor&gt;
--lst_excercise: LinkedList&lt;ExcercisePart&gt;
--lst_group: LinkedList&lt;Group&gt;
---</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>534</x>
-      <y>495</y>
-      <w>165</w>
-      <h>24</h>
+      <x>1032</x>
+      <y>666</y>
+      <w>330</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>entities::Tutor
 --
@@ -265,173 +217,47 @@ entities::Course
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>690</x>
-      <y>495</y>
-      <w>38</w>
-      <h>23</h>
+      <x>1344</x>
+      <y>666</y>
+      <w>114</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>33;9;9;18</additional_attributes>
+    <additional_attributes>102;18;18;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>516</x>
-      <y>333</y>
-      <w>164</w>
-      <h>17</h>
+      <x>870</x>
+      <y>372</y>
+      <w>498</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 m1=0..n
 m2=1</panel_attributes>
-    <additional_attributes>9;9;159;12</additional_attributes>
+    <additional_attributes>18;18;486;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>516</x>
-      <y>348</y>
-      <w>164</w>
-      <h>56</h>
-    </coordinates>
-    <panel_attributes>lt=-&gt;
-m1=0..n
-m2=1</panel_attributes>
-    <additional_attributes>9;51;159;9</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>354</x>
-      <y>336</y>
-      <w>131</w>
-      <h>26</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>9;21;126;9</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>372</x>
-      <y>399</y>
-      <w>65</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>9;45;60;9</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>372</x>
-      <y>465</y>
-      <w>56</w>
-      <h>35</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>9;9;51;30</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>447</x>
-      <y>444</y>
-      <w>54</w>
-      <h>24</h>
-    </coordinates>
-    <panel_attributes>entities::ExcercisePart
---
--name: String
--grade: GradeTypeEnum
---</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>444</x>
-      <y>459</y>
-      <w>35</w>
-      <h>29</h>
-    </coordinates>
-    <panel_attributes>lt=-
-m1=1
-m2=1..n</panel_attributes>
-    <additional_attributes>9;24;30;9</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>471</x>
-      <y>432</y>
-      <w>110</w>
-      <h>56</h>
+      <x>1236</x>
+      <y>540</y>
+      <w>222</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
 m2=1..n</panel_attributes>
-    <additional_attributes>9;51;105;9</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>642</x>
-      <y>432</y>
-      <w>86</w>
-      <h>62</h>
-    </coordinates>
-    <panel_attributes>lt=-
-m1=0..n
-m2=1..n</panel_attributes>
-    <additional_attributes>9;9;81;57</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>516</x>
-      <y>396</y>
-      <w>65</w>
-      <h>29</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-m1=1
-m2=0..n</panel_attributes>
-    <additional_attributes>9;9;60;24</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>465</x>
-      <y>408</y>
-      <w>17</w>
-      <h>41</h>
-    </coordinates>
-    <panel_attributes>lt=-
-m1=1
-m2=1..n</panel_attributes>
-    <additional_attributes>12;9;9;36</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>507</x>
-      <y>492</y>
-      <w>32</w>
-      <h>23</h>
-    </coordinates>
-    <panel_attributes>lt=-
-m1=0..n
-m2=1..n</panel_attributes>
-    <additional_attributes>9;9;27;18</additional_attributes>
+    <additional_attributes>18;18;18;96;210;96</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
-      <x>255</x>
-      <y>297</y>
-      <w>576</w>
-      <h>366</h>
+      <x>510</x>
+      <y>270</y>
+      <w>1152</w>
+      <h>732</h>
     </coordinates>
     <panel_attributes>entities</panel_attributes>
     <additional_attributes/>
@@ -439,10 +265,10 @@ m2=1..n</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>36</x>
-      <y>333</y>
-      <w>108</w>
-      <h>72</h>
+      <x>72</x>
+      <y>342</y>
+      <w>216</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 service::IService
@@ -453,31 +279,29 @@ service::IService
 +addCourseToSystem(cr: Course)
 +listAllCoursesFromSystem(): LinkedList&lt;Course&gt;
 +deleteCourseFromSystem(cr: Course)
-+restoreCourseToSystem(cr: Course)
-+createBackUp()
-+restoreBackUp()</panel_attributes>
++restoreCourseToSystem(cr: Course)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>354</x>
-      <y>471</y>
-      <w>419</w>
-      <h>137</h>
+      <x>750</x>
+      <y>552</y>
+      <w>798</w>
+      <h>342</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
 m2=1..n</panel_attributes>
-    <additional_attributes>9;9;30;132;201;132;363;132;414;84</additional_attributes>
+    <additional_attributes>24;18;18;330;360;330;786;330;786;234</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
-      <x>207</x>
-      <y>162</y>
-      <w>144</w>
-      <h>90</h>
+      <x>414</x>
+      <y>0</y>
+      <w>288</w>
+      <h>180</h>
     </coordinates>
     <panel_attributes>default
 </panel_attributes>
@@ -486,32 +310,32 @@ m2=1..n</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>273</x>
-      <y>216</y>
-      <w>98</w>
-      <h>86</h>
+      <x>546</x>
+      <y>108</y>
+      <w>198</w>
+      <h>174</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>93;81;9;9</additional_attributes>
+    <additional_attributes>186;162;18;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>96</x>
-      <y>444</y>
-      <w>164</w>
-      <h>14</h>
+      <x>192</x>
+      <y>564</y>
+      <w>330</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>159;9;9;9</additional_attributes>
+    <additional_attributes>318;18;18;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
       <x>0</x>
-      <y>300</y>
-      <w>225</w>
-      <h>192</h>
+      <y>276</y>
+      <w>450</w>
+      <h>384</h>
     </coordinates>
     <panel_attributes>service
 </panel_attributes>
@@ -520,10 +344,10 @@ m2=1..n</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>435</x>
-      <y>537</y>
-      <w>66</w>
-      <h>42</h>
+      <x>840</x>
+      <y>750</y>
+      <w>132</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>entities::Assessment
 --
@@ -539,10 +363,10 @@ m2=1..n</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>282</x>
-      <y>603</y>
-      <w>66</w>
-      <h>33</h>
+      <x>564</x>
+      <y>882</y>
+      <w>132</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>entities::AssessmentTypEnum
 --
@@ -554,23 +378,23 @@ Abgabegespräch</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>360</x>
-      <y>471</y>
-      <w>92</w>
-      <h>71</h>
+      <x>846</x>
+      <y>552</y>
+      <w>30</w>
+      <h>210</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1..n
 m2=1</panel_attributes>
-    <additional_attributes>87;66;9;9</additional_attributes>
+    <additional_attributes>18;198;18;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>273</x>
-      <y>516</y>
-      <w>69</w>
-      <h>27</h>
+      <x>546</x>
+      <y>708</y>
+      <w>138</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>entities::RegistrationTypeEnum
 --
@@ -581,48 +405,23 @@ elektronisch</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>492</x>
-      <y>546</y>
-      <w>257</w>
-      <h>14</h>
+      <x>954</x>
+      <y>768</y>
+      <w>546</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
 m2=1..n</panel_attributes>
-    <additional_attributes>9;9;201;9;252;9</additional_attributes>
+    <additional_attributes>18;42;534;48;534;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>156</x>
-      <y>384</y>
-      <w>60</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;interface&gt;&gt;
-java.lang.*::Serializeable
---
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>96</x>
-      <y>390</y>
-      <w>65</w>
-      <h>59</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>60;9;9;54</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>474</x>
-      <y>609</y>
-      <w>69</w>
-      <h>27</h>
+      <x>948</x>
+      <y>894</y>
+      <w>138</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>entities::GradeTypeEnum
 --
@@ -636,14 +435,14 @@ N5</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>585</x>
-      <y>432</y>
-      <w>32</w>
-      <h>68</h>
+      <x>1170</x>
+      <y>540</y>
+      <w>30</w>
+      <h>138</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=1..n</panel_attributes>
-    <additional_attributes>27;63;9;9</additional_attributes>
+    <additional_attributes>18;126;18;18</additional_attributes>
   </element>
 </diagram>
