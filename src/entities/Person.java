@@ -7,8 +7,13 @@ package entities;
  * @author Gruppe222 - Rainer
  */
 public abstract class Person {
+	// firstname of the person
 	private String firstName;
+	
+	// lastname of the person
 	private String lastName;
+	
+	// email address of the person
 	private String email;
 	
 	/**
@@ -21,7 +26,7 @@ public abstract class Person {
 	
 	/**
 	 * Setter firstname
-	 * @param firstName of the person
+	 * @param firstName of the person to set
 	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -37,7 +42,7 @@ public abstract class Person {
 	
 	/**
 	 * Setter lastname
-	 * @param lastName of the person
+	 * @param lastName of the person to set
 	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
@@ -53,7 +58,7 @@ public abstract class Person {
 	
 	/**
 	 * Setter email
-	 * @param email address of the person
+	 * @param email address of the person to set
 	 */
 	public void setEmail(String email) {
 		this.email = email;
