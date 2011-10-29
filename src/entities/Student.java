@@ -4,6 +4,9 @@ import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
+import exception.SubscribeException;
+import exception.UnsubscribeException;
+
 /**
  * The student class extends the abstract person class
  * and implements methods for student actions
@@ -139,7 +142,7 @@ public class Student extends Person {
 		Calendar cal = Calendar.getInstance();
 	    
 	    if (cr.getFirstRegistrationDate().after(cal.getTime()) || cr.getLastRegistrationDate().before(cal.getTime())) {
-	    	//throw new SubscribeForCourse("Look at the registration time");
+	    	throw new SubscribeException("Look at the registration time");
 	    }
 		
 		if (!cr.getLstStudents().contains(this)) {
@@ -147,7 +150,7 @@ public class Student extends Person {
 			cr.getLstStudents().add(this);
 			this.lst_courses.add(cr);
 		} else {
-			//throw new AdministrationException("Student already attending this course.");
+			throw new SubscribeException("Student already attending this course.");
 		}
 	}
 	
@@ -160,13 +163,13 @@ public class Student extends Person {
 		Calendar cal = Calendar.getInstance();
 	    
 	    if (cr.getLastDeregistrationDate().before(cal.getTime())) {
-	    	//throw new AdministrationException("Deregistration expired.");
+	    	throw new UnsubscribeException("Deregistration expired.");
 	    } else {	
 	    	if (cr.getLstStudents().remove(this)) {
 				cr.decrementStudentCounter();
 				this.lst_courses.remove(cr);
 	    	} else  		
-	    		//throw new AdministrationException("No Registration found.");  
+	    		throw new UnsubscribeException("No Registration found.");  
 	    }
 	}
 	
@@ -179,7 +182,7 @@ public class Student extends Person {
 		Calendar cal = Calendar.getInstance();
 	    
 	    if (ass.getFirstRegistrationDate().after(cal.getTime()) || ass.getLastRegistrationDate().before(cal.getTime())) {
-	    	//throw new SubscribeForCourse("Look at the registration time");
+	    	throw new SubscribeException("Look at the registration time");
 	    }
 		
 		if (!ass.getLstStudents().contains(this)) {
@@ -187,7 +190,7 @@ public class Student extends Person {
 			ass.getLstStudents().add(this);
 			this.lst_assessments.add(ass);
 		} else {
-			//throw new AdministrationException("Student already attending this course.");
+			throw new SubscribeException("Student already attending this course.");
 		}
 	}
 	
@@ -200,13 +203,13 @@ public class Student extends Person {
 		Calendar cal = Calendar.getInstance();
 	    
 	    if (ass.getLastDeregistrationDate().before(cal.getTime())) {
-	    	//throw new AdministrationException("Deregistration expired.");
+	    	throw new UnsubscribeException("Deregistration expired.");
 	    } else {	
 	    	if (ass.getLstStudents().remove(this)) {
 				ass.decrementStudentCounter();
 				this.lst_assessments.remove(ass);
 	    	} else  		
-	    		//throw new AdministrationException("No Registration found.");  
+	    		throw new UnsubscribeException("No Registration found.");  
 	    }
 	}
 	

@@ -5,9 +5,8 @@ package entities;
  */
 public class Tutor extends Student {
 
-	public Tutor(String matrNr) {
-		super(matrNr);
-		// TODO Auto-generated constructor stub
+	public Tutor(String matrNr, String firstName, String lastName) {
+		super(matrNr, firstName, lastName);
 	}
 
 }
