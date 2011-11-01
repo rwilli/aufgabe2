@@ -38,12 +38,16 @@ public class Student extends Person {
 	/**
 	 * default constructor with given matrNr
 	 * 
-	 * @param matrNr student id
+	 * @param matrNr student unique id
+	 * @param firstName of the student
+	 * @param lastName of the student
+	 * @param email of the student
 	 */
-	public Student(String matrNr, String firstName, String lastName) {
+	public Student(String matrNr, String firstName, String lastName, String email) {
 		this.matrNr = matrNr;
 		this.setFirstName(firstName);
 		this.setLastName(lastName);
+		this.setEmail(email);
 		this.lst_courses = new LinkedList<Course>();
 		this.lst_groups = new LinkedList<Group>();
 		this.lst_assessments = new LinkedList<Assessment>();
@@ -238,6 +242,64 @@ public class Student extends Person {
 	 */
 	public void addGrade(String grade) {
 		this.lst_grades.add(grade);
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + (hasSteg ? 1231 : 1237);
+		result = prime * result + (hasSteop ? 1231 : 1237);
+		result = prime * result
+				+ ((lst_courses == null) ? 0 : lst_courses.hashCode());
+		result = prime * result
+				+ ((lst_grades == null) ? 0 : lst_grades.hashCode());
+		result = prime * result
+				+ ((lst_groups == null) ? 0 : lst_groups.hashCode());
+		result = prime * result + ((matrNr == null) ? 0 : matrNr.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (!(obj instanceof Student))
+			return false;
+		Student other = (Student) obj;
+		if (hasSteg != other.hasSteg)
+			return false;
+		if (hasSteop != other.hasSteop)
+			return false;
+		if (lst_courses == null) {
+			if (other.lst_courses != null)
+				return false;
+		} else if (!lst_courses.equals(other.lst_courses))
+			return false;
+		if (lst_grades == null) {
+			if (other.lst_grades != null)
+				return false;
+		} else if (!lst_grades.equals(other.lst_grades))
+			return false;
+		if (lst_groups == null) {
+			if (other.lst_groups != null)
+				return false;
+		} else if (!lst_groups.equals(other.lst_groups))
+			return false;
+		if (matrNr == null) {
+			if (other.matrNr != null)
+				return false;
+		} else if (!matrNr.equals(other.matrNr))
+			return false;
+		return true;
 	}
 	
 }

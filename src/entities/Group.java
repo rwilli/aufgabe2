@@ -4,53 +4,45 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * The class group stands for a group of students.
  * 
  * @author Gruppe222 - Rainer
  */
 public class Group {
+	// group id
 	private int id;
+	
+	// name of the group
 	private String name;
+	
+	// maximum group size
 	private int maxGroupSize;
+	
+	// given tutor for the group
 	private Tutor tutor;
+	
+	// list of students, that belong to the group
 	private List<Student> lst_students;
 	
-	public Group(int id, String name, int size) {
+	/**
+	 * default constructor
+	 * 
+	 * @param id of the group
+	 * @param name of the group 
+	 * @param size maximum student size of the group
+	 * @param tu tutor of the group
+	 */
+	public Group(int id, String name, int size, Tutor tu) {
 		this.id = id;
 		this.name = name;
 		this.maxGroupSize = size;
-		//this.tutor = new Tutor() ??
 		this.lst_students = new LinkedList<Student>();
+		this.tutor = tu;
 	}
 
 	/**
-	 * @return the id
-	 */
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
+	 * Getter maxGroupSize
+	 * 
 	 * @return the maxGroupSize
 	 */
 	public int getMaxGroupSize() {
@@ -58,17 +50,12 @@ public class Group {
 	}
 
 	/**
+	 * Setter maxGroupSize
+	 * 
 	 * @param maxGroupSize the maxGroupSize to set
 	 */
 	public void setMaxGroupSize(int maxGroupSize) {
 		this.maxGroupSize = maxGroupSize;
-	}
-
-	/**
-	 * @return the tutor
-	 */
-	public Tutor getTutor() {
-		return tutor;
 	}
 
 	/**
@@ -78,18 +65,82 @@ public class Group {
 		this.tutor = tutor;
 	}
 
-	/**
-	 * @return the lst_students
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
 	 */
-	public List<Student> getLst_students() {
-		return lst_students;
+	@Override
+	public String toString() {
+		return "Group [id=" + this.id + ", name=" + name + ", maxGroupSize="
+				+ maxGroupSize + ", tutor=" + tutor + ", lst_students="
+				+ lst_students + "]";
+	}
+	
+	/**
+	 * List responsible tutor
+	 * 
+	 * @return the tutor
+	 */
+	public String listTutor() {
+		return this.tutor.getFirstName() + " " + this.tutor.getLastName();
 	}
 
 	/**
-	 * @param lst_students the lst_students to set
+	 * List all students of this group
+	 * 
+	 * @return the lst_students
 	 */
-	public void setLst_students(List<Student> lst_students) {
-		this.lst_students = lst_students;
+	public List<Student> listAllStudents() {
+		return lst_students;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		result = prime * result
+				+ ((lst_students == null) ? 0 : lst_students.hashCode());
+		result = prime * result + maxGroupSize;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((tutor == null) ? 0 : tutor.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Group))
+			return false;
+		Group other = (Group) obj;
+		if (id != other.id)
+			return false;
+		if (lst_students == null) {
+			if (other.lst_students != null)
+				return false;
+		} else if (!lst_students.equals(other.lst_students))
+			return false;
+		if (maxGroupSize != other.maxGroupSize)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (tutor == null) {
+			if (other.tutor != null)
+				return false;
+		} else if (!tutor.equals(other.tutor))
+			return false;
+		return true;
 	}
 
 }
