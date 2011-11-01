@@ -129,6 +129,17 @@ public class Student extends Person {
 	}
 	
 	/**
+	 * Add assessment to student. Only used after
+	 * created an instance from Student to add 
+	 * some Assessments
+	 * 
+	 * @return void
+	 */
+	public void addAssessments(Assessment a) {
+		this.lst_assessments.add(a);
+	}
+	
+	/**
 	 * List all grades of the student
 	 * 
 	 * @return list of the student's grades
