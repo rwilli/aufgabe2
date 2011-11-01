@@ -205,7 +205,7 @@ public class Student extends Person {
 			ass.getLstStudents().add(this);
 			this.lst_assessments.add(ass);
 		} else {
-			throw new SubscribeException("Student already attending this course.");
+			throw new SubscribeException("Student already attending this assessment.");
 		}
 	}
 	

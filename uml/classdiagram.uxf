@@ -314,8 +314,8 @@ m2=1..n</panel_attributes>
     <coordinates>
       <x>455</x>
       <y>90</y>
-      <w>165</w>
-      <h>145</h>
+      <w>164</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>155;135;15;15</additional_attributes>
@@ -418,23 +418,6 @@ m2=1..n</panel_attributes>
     <additional_attributes>15;35;445;40;445;15</additional_attributes>
   </element>
   <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>790</x>
-      <y>745</y>
-      <w>115</w>
-      <h>45</h>
-    </coordinates>
-    <panel_attributes>entities::GradeTypeEnum
---
-S1
-U2
-B3
-G4
-N5</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>975</x>
@@ -446,5 +429,22 @@ N5</panel_attributes>
 m1=1
 m2=1..n</panel_attributes>
     <additional_attributes>15;105;15;15</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>800</x>
+      <y>755</y>
+      <w>115</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>entities::GradeTypeEnum
+--
+S1
+U2
+B3
+G4
+N5</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

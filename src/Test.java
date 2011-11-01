@@ -1,8 +1,13 @@
+import java.util.Iterator;
 import java.util.LinkedList;
 
-/**
- * 
- */
+import entities.Course;
+import entities.GradeTypeEnum;
+import entities.Lecturer;
+import entities.Student;
+import entities.Tutor;
+
+import exception.*;
 
 /**
  * @author Gruppe 222 - Patrick
@@ -23,10 +28,20 @@ public class Test {
 		
 		/* Create different Course */
 		
-		Course course1 = new Course(ID, Name, maxStudentNumber, firstRegDate, lastRegDate, lastDeRegDate, infoDate, reqSteop, reqStep, regTyp).
-	    Course course2 = new Course(ID, Name, maxStudentNumber, firstRegDate, lastRegDate, lastDeRegDate, infoDate, reqSteop, reqStep, regTyp).
-		Course course3 = new Course(ID, Name, maxStudentNumber, firstRegDate, lastRegDate, lastDeRegDate, infoDate, reqSteop, reqStep, regTyp).
-		Course course4 = new Course(ID, Name, maxStudentNumber, firstRegDate, lastRegDate, lastDeRegDate, infoDate, reqSteop, reqStep, regTyp).
+		/**
+		 * STEG includes Course 1  (StudieneingangsgesprŠch)
+		 * STEOP includes Course 1 and 2  
+		 * 
+		 * Course1: STEG, RegDate Frame is now, maxNumOfStudents 1
+		 * Course2: STEOP, RegDate Frame is now
+		 * Course3: STEG and STEOP required 
+		 * Course4: FirstRegDate in Future
+		 */
+		
+		Course course1 = new Course(ID, Name, maxStudentNumber, firstRegDate, lastRegDate, lastDeRegDate, infoDate, reqSteop, reqSteg, regTyp);
+	    Course course2 = new Course(ID, Name, maxStudentNumber, firstRegDate, lastRegDate, lastDeRegDate, infoDate, reqSteop, reqSteg, regTyp);
+		Course course3 = new Course(ID, Name, maxStudentNumber, firstRegDate, lastRegDate, lastDeRegDate, infoDate, reqSteop, reqSteg, regTyp);
+		Course course4 = new Course(ID, Name, maxStudentNumber, firstRegDate, lastRegDate, lastDeRegDate, infoDate, reqSteop, reqSteg, regTyp);
 		
 		/* Create Students */
 
@@ -34,36 +49,29 @@ public class Test {
 		/**
 		 * Student1 Properties: newly enrolled Student, no Course, no Assessments .. nothing
 		 */
-		Student student1 = new Student(matNr, firstName, lastName, email);
+		Student student1 = new Student("1100000", "Ihave", "Nothing", "ihave@nothing.at");
 		
 		
 		/**
-		 * Student2 Properties: some Assessments, but not completed STEOP or STEP
+		 * Student2 Properties: STEG completed
 		 */
 		
-		Student student2 = new Student(matNr, firstName, lastName, email);
-		
-		//TODO add Assesments to Student2
-		
+		Student student2 = new Student("1123456", "Patrick", "Fuerst", "patrick.fuerst@inode.at");
+		student2.addGrade(course1.getTitle() +" " + GradeTypeEnum.B3);
+				
 		
 		/** 
-		 * Student3 Properties: completed STEOP, but not STEP 
+		 * Student3 Properties: completed STEOP and STEP
 		 */
 		
-		Student student3 = new Student(matNr, firstName, lastName, email);
-		
-		//TODO add Assesments to Student3
+		Student student3 = new Student(1099993, Ihave, SteopAndSteg, steopanssteg@as.at);
+		student2.addGrade(course1.getTitle() +" " + GradeTypeEnum.S1);
+		student2.addGrade(course2.getTitle() +" " + GradeTypeEnum.S1);
 
-		
-		/** 
-		 * Student4 Properties: completed STEOP and STEP
-		 */
+	
+
+	
 		Student student4 = new Student(matNr, firstName, lastName, email);
-		
-		//TODO add Assesments to Student4
-
-		
-		
 		Student student5 = new Student(matNr, firstName, lastName, email);
 		Student student6 = new Student(matNr, firstName, lastName, email);
 		Student student7 = new Student(matNr, firstName, lastName, email);
@@ -71,10 +79,10 @@ public class Test {
 		
 		/* Create Tutor */
 		
-		Tutor tutor1 = new Tutor(firstName, lastName, email);
-		Tutor tutor2 = new Tutor(firstName, lastName, email);
-		Tutor tutor3 = new Tutor(firstName, lastName, email);
-		Tutor tutor4 = new Tutor(firstName, lastName, email);
+		Tutor tutor1 = new Tutor(matNr,firstName, lastName, email);
+		Tutor tutor2 = new Tutor(matNr,firstName, lastName, email);
+		Tutor tutor3 = new Tutor(matNr,firstName, lastName, email);
+		Tutor tutor4 = new Tutor(matNr,firstName, lastName, email);
 		
 		
 		/* Create Lecturer */
@@ -101,19 +109,51 @@ public class Test {
 		
 		/**
 		 * Case1:
-		 * Student is able to register for Course
+		 * Student1 is able to subscribe for Course1 (Steg), 
+		 * but not able to subscribe course 2, because
+		 * he didn«t completed STEG
+		 * 
+		 * Expected Output: SubscribeException, Steg not completed
+		 * 
 		 */
+		try{
+			student1.subscribe(course1);
+			student1.subscribe(course2);
+
+		}catch(SubscribeException e){
+			System.out.println( e.toString() );	
+
+		}
 		
 		/**
 		 * Case2: 
-		 * Student isn«t able to register because it is to early 
+		 * Student1 isn«t able to subscribe to Course4 because it is to early 
+		 * 
+		 * Expected Output: SubscribeException, Look at the RegDate
 		 */
+		
+		try{
+			student1.subscribe(course4);
+
+		}catch(SubscribeException e){
+			System.out.println( e.toString() );	
+
+		}
 		
 		/**
 		 * Case3:
-		 * Student is able to register, and is able to deregister
-		 * 
+		 * Student1 registered before for course1 is now able to deregister
+		 * 		 
+		 *  Expected Output: Nothing
 		 */
+		
+		try{
+			student1.unsubscribe(course1);
+
+		}catch(SubscribeException e){
+			System.out.println( e.toString() );	
+
+		}
 		
 		/**
 		 * Case4:
@@ -121,19 +161,50 @@ public class Test {
 		 */
 		
 		/**
-		 * Case6:
-		 * Student isn«t able to register, because maxNumber of Students is reached
+		 * Case5:
+		 * Student2 isn«t able to register, because maxNumber of Students is reached
+		 * 
+		 * Expected Output: MaxNum of Students reached
 		 */
+		try{
+			student1.subscribe(course1);
+			student2.subscribe(course1);
+
+		}catch(SubscribeException e){
+			System.out.println( e.toString() );	
+
+		}
 		
 		/**
 		 * Case6:
-		 * Student isnt«able to register because of STEOP
+		 * Student2 isnt«able to register to course 3 because of STEOP
+		 * 
+		 * Expected Output: Steop not completed
 		 */
+		
+		try{
+			student2.subscribe(course1);
+
+		}catch(SubscribeException e){
+			System.out.println( e.toString() );	
+
+		}
 		
 		/**
 		 * Case7:
-		 * Student isnt«t able to register because of STEP
+		 * Student3 is able to subscribe to course 3 
+		 * 
+		 * Expected Output: Nothing
 		 */
+		
+		try{
+			student3.subscribe(course3);
+
+		}catch(SubscribeException e){
+			System.out.println( e.toString() );	
+
+		}
+		
 		
 		
 		
