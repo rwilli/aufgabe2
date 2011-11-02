@@ -62,6 +62,9 @@ public class Course {
 	
 	// calendar variable
 	private Calendar cal;
+	
+	// required Courses for the current course, can be null.
+	private LinkedList<Course> reqCourses;
 
 	/**
 	 * @param title
@@ -336,6 +339,8 @@ public class Course {
 	 *             if the time frame has expired or if the maximum has been
 	 *             reached
 	 */
+	
+	/*
 	public void registerStudent(Student s) throws AdministrationException {
 
 		// TODO: Steop / Steg ueberpruefen
@@ -358,13 +363,7 @@ public class Course {
 		}
 	}
 	
-	/**
-	 * deregister student from course
-	 * 
-	 * @param s the student to be deregistered
-	 * @param c the course
-	 * @throws AdministrationException 
-	 */
+	
 	public void deregisterStudent(Student s) throws AdministrationException {
        
 		Calendar cal = Calendar.getInstance();
@@ -381,6 +380,7 @@ public class Course {
 	    	throw new AdministrationException("No Registration found.");  
 	    }
 	}
+	*/
 	/**
 	 * cancels the course
 	 * @throws AdministrationException if the course was already canceled before;
@@ -394,16 +394,64 @@ public class Course {
 		}
 	}
 	
+	/**
+	 * Informs the students attending this course.
+	 * @param students
+	 */
 	public void inform(LinkedList<Student> students) {
-		// TODO
+		for (Student s : students) {
+			s.inform();
+		}
 	}
 	
+	/**
+	 * Informs the lecturer of the course
+	 * @param l
+	 */
 	public void inform(Lecturer l) {
-		// TODO
+		l.inform();
 	}
 	
+	/**
+	 * Informs the students attending this course and the lecturer.
+	 * @param students
+	 * @param l
+	 */
 	public void inform(LinkedList<Student> students, Lecturer l) {
-		// TODO
+		l.inform();
+		for (Student s : students) {
+			s.inform();
+		}
+		
+	}
+
+	/**
+	 * @return the reqCourses
+	 */
+	public LinkedList<Course> getReqCourses() {
+		return reqCourses;
+	}
+
+	/**
+	 * @param reqCourses the reqCourses to set
+	 */
+	public void setReqCourses(LinkedList<Course> reqCourses) {
+		this.reqCourses = new LinkedList<Course>();
+		this.reqCourses = reqCourses;
+	}
+	
+	/**
+	 * increments the student count by 1.
+	 */
+	public void incrementStudentCounter() {
+		this.studentCount++;
+	}
+	
+	/**
+	 * decrements the student count by 1.
+	 */
+	public void decrementStudentCounter() {
+		this.studentCount--;
 	}
 
 	/*

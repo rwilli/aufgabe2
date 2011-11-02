@@ -63,14 +63,6 @@ public class Student extends Person {
 		return matrNr;
 	}
 
-	/**
-	 * Setter matrNr
-	 * 
-	 * @param matrNr the matrNr to set
-	 */
-	public void setMatrNr(String matrNr) {
-		this.matrNr = matrNr;
-	}
 	
 	/**
 	 * Getter steop
@@ -152,8 +144,9 @@ public class Student extends Person {
 	 * Subscribe student for course
 	 * 
 	 * @param cr Course
+	 * @throws SubscribeException 
 	 */
-	public void subscribe(Course cr) {
+	public void subscribe(Course cr) throws SubscribeException {
 		Calendar cal = Calendar.getInstance();
 	    
 	    if (cr.getFirstRegistrationDate().after(cal.getTime()) || cr.getLastRegistrationDate().before(cal.getTime())) {
@@ -173,8 +166,9 @@ public class Student extends Person {
 	 * Unsubscribe student for course
 	 * 
 	 * @param cr Course
+	 * @throws UnsubscribeException 
 	 */
-	public void unsubscribe(Course cr) {
+	public void unsubscribe(Course cr) throws UnsubscribeException {
 		Calendar cal = Calendar.getInstance();
 	    
 	    if (cr.getLastDeregistrationDate().before(cal.getTime())) {
@@ -192,8 +186,9 @@ public class Student extends Person {
 	 * Subscribe student for assessment
 	 * 
 	 * @param ass Assessment
+	 * @throws SubscribeException 
 	 */
-	public void subscribe(Assessment ass) {
+	public void subscribe(Assessment ass) throws SubscribeException {
 		Calendar cal = Calendar.getInstance();
 	    
 	    if (ass.getFirstRegistrationDate().after(cal.getTime()) || ass.getLastRegistrationDate().before(cal.getTime())) {
@@ -213,8 +208,9 @@ public class Student extends Person {
 	 * Unsubscribe student for assessment
 	 * 
 	 * @param ass Assessment
+	 * @throws UnsubscribeException 
 	 */
-	public void unsubscribe(Assessment ass) {
+	public void unsubscribe(Assessment ass) throws UnsubscribeException {
 		Calendar cal = Calendar.getInstance();
 	    
 	    if (ass.getLastDeregistrationDate().before(cal.getTime())) {
