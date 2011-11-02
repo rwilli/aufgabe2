@@ -419,7 +419,11 @@ public class Course {
 	public void cancelCourse() {
 		if (this.active == true) {
 			this.active = false; 
-			inform(this.lstStudents, this.lecturer);
+			if (this.lecturer != null) {
+				inform(this.lstStudents, this.lecturer);
+			} else {
+				inform(this.lstStudents);
+			}
 		}
 	}
 	
@@ -433,13 +437,6 @@ public class Course {
 		}
 	}
 	
-	/**
-	 * Informs the lecturer of the course
-	 * @param l
-	 */
-	public void inform(Lecturer l) {
-		l.inform();
-	}
 	
 	/**
 	 * Informs the students attending this course and the lecturer.
