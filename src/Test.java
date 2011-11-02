@@ -24,7 +24,7 @@ public class Test {
 		
 		/* Create Service which contains all Courses */	
 		
-		IService iService = new IService();
+		UniService uniService = new UniService();
 		
 		/* Create different Course */
 		
@@ -106,6 +106,10 @@ public class Test {
 		 * Start Testing all different TestCases
 		 * 
 		 */
+		
+		
+		/* ---------- Subscribe and unsubscribe testcases  ------- */
+
 		
 		/**
 		 * Case1:
@@ -205,28 +209,20 @@ public class Test {
 
 		}
 		
+		/* Print current Status of all Courses
+		 * 
+		 * Expected Output:
+		 * 
+		 * 			Course1 contains: Student1
+		 * 			Course3 contains: Student3	
+		 *  
+		 *  */
+		
+		uniService.printAllCoursesWithStudents();
+		
+		/* ---------- Subscribe and unsubscribe testcases finished ------- */
 		
 		
-		
-//		course1.addStudent( student1 );
-//		course1.addStudent( student2 );
-//		course1.addStudent( student3 );	
-//		course1.addStudent( student4 );
-//
-//		course2.addStudent( student1 );
-//		course2.addStudent( student2 );
-//		course2.addStudent( student3 );	
-//		course2.addStudent( student4 );
-//		
-//		course3.addStudent( student1 );
-//		course3.addStudent( student2 );
-//		course3.addStudent( student3 );	
-//		course3.addStudent( student4 );
-//		
-//		course4.addStudent( student1 );
-//		course4.addStudent( student2 );
-//		course4.addStudent( student3 );	
-//		course4.addStudent( student4 );
 		
 		/* Add the Courses to the Service */
 		
