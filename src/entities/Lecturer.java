@@ -69,10 +69,11 @@ public class Lecturer extends Person {
 	 * Grade student for one course with the given grade
 	 * 
 	 * @param st student to be graded
+	 * @param cr complied course
 	 * @param grade for the student
 	 */
-	public void gradeStudent(Student st, String grade) {
-		st.addGrade(grade);
+	public void gradeStudent(Student st, Course cr, GradeTypeEnum grade) {
+		st.addGrade(cr, grade);
 	}
 
 }

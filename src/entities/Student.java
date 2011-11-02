@@ -154,6 +154,12 @@ public class Student extends Person {
 	    	throw new SubscribeException("Look at the registration time");
 	    }
 	    
+	    // check course requirements
+	    for (Course c: cr.getReqCourses()) {
+	    	if (!this.map_grades.containsKey(c.getTitle()))
+	    		throw new SubscribeException("Required Course not complied " + c.getTitle());
+	    }
+	    
 	    if( !cr.isReqSteg() && !isHasSteg() ){
 	    	throw new SubscribeException("Required Steg not complied");
 		}

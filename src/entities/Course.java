@@ -5,7 +5,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 
-import exception.AdministrationException;
+import exception.DateException;
+
 
 /**
  * Class for Course
@@ -140,9 +141,9 @@ public class Course {
 	 *            the lastRegistrationDate to set
 	 * @throws AdministrationException
 	 */
-	public void setLastRegistrationDate(Date lastRegistrationDate) throws AdministrationException {
+	public void setLastRegistrationDate(Date lastRegistrationDate) throws DateException {
 		if (lastRegistrationDate.before(cal.getTime())) {
-			throw new AdministrationException("Date is in the past.");
+			throw new DateException("Date is in the past.");
 		}
 		this.lastRegistrationDate = lastRegistrationDate;
 	}
@@ -159,9 +160,9 @@ public class Course {
 	 *            the lastDeregistrationDate to set
 	 * @throws AdministrationException 
 	 */
-	public void setLastDeregistrationDate(Date lastDeregistrationDate) throws AdministrationException {
+	public void setLastDeregistrationDate(Date lastDeregistrationDate) throws DateException {
 		if (lastDeregistrationDate.before(cal.getTime())) {
-			throw new AdministrationException("Date is in the past.");
+			throw new DateException("Date is in the past.");
 		}
 		this.lastDeregistrationDate = lastDeregistrationDate;
 	}
@@ -284,9 +285,9 @@ public class Course {
 	 *            the infoDate to set
 	 * @throws AdministrationException if the date is in the past.
 	 */
-	public void setInfoDate(Date infoDate) throws AdministrationException {
+	public void setInfoDate(Date infoDate) throws DateException {
 		if (infoDate.before(cal.getTime())) {
-			throw new AdministrationException("Date is in the past.");
+			throw new DateException("Date is in the past.");
 		}
 		this.infoDate = infoDate;
 	}
@@ -415,12 +416,10 @@ public class Course {
 	 * cancels the course
 	 * @throws AdministrationException if the course was already canceled before;
 	 */
-	public void cancelCourse() throws AdministrationException {
-		if (active == true) {
-			active = false; 
-			// inform(lstStudents, lecturer)
-		} else {
-			throw new AdministrationException("Course was already canceled.");
+	public void cancelCourse() {
+		if (this.active == true) {
+			this.active = false; 
+			inform(this.lstStudents, this.lecturer);
 		}
 	}
 	
