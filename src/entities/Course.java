@@ -45,6 +45,8 @@ public class Course {
 	// list of the groups
 	private LinkedList<Group> lstGroups;
 
+	// list of assumes Course to subscribe this Course
+	private LinkedList<Course> lstAssumedCourses;
 	// maximum number of registrations
 	private int maxStudentCount;
 
@@ -85,6 +87,7 @@ public class Course {
 		this.studentCount = 0;
 		this.lstStudents = new LinkedList<Student>();
 		this.lstGroups = new LinkedList<Group>();
+		this.lstAssumedCourses = new LinkedList<Course>();
 		this.regType = RegistrationTypeEnum.elektronisch;
 		this. reqSteop = false;
 		this. reqSteg = false;
@@ -210,6 +213,30 @@ public class Course {
 	 */
 	public void setLstStudents(LinkedList<Student> lstStudents) {
 		this.lstStudents = lstStudents;
+	}
+	
+	/**
+	 * @return the lstAssumedCourses
+	 */
+	
+	public LinkedList<Course> getAssumedCourses(){
+		return this.lstAssumedCourses;
+	}
+	
+	/**
+	 * @param Course
+	 *            one AssumedCourse to Set
+	 */
+	public void setLstAssumedCourse(Course cr) {
+		this.lstAssumedCourses.add(cr);
+	}
+	
+	/**
+	 * @param lstCourses
+	 *            the AssumedCourses to Set
+	 */
+	public void setLstAssumedCourses( LinkedList<Course> crs) {
+		this.lstAssumedCourses = crs;
 	}
 
 	/**
@@ -340,6 +367,7 @@ public class Course {
 
 		// TODO: Steop / Steg ueberpruefen
 		
+		
 		if (firstRegistrationDate.after(cal.getTime())
 				|| lastDeregistrationDate.before(cal.getTime())) {
 			throw new AdministrationException(
@@ -356,6 +384,8 @@ public class Course {
 			throw new AdministrationException(
 					"Student is already attending this course or maximum student number has been reached.");
 		}
+		
+		
 	}
 	
 	/**
