@@ -46,8 +46,6 @@ public class Course {
 	// list of the groups
 	private LinkedList<Group> lstGroups;
 
-	// list of assumes Course to subscribe this Course
-	private LinkedList<Course> lstAssumedCourses;
 	// maximum number of registrations
 	private int maxStudentCount;
 
@@ -67,7 +65,7 @@ public class Course {
 	private Calendar cal;
 	
 	// required Courses for the current course, can be null.
-	private LinkedList<Course> reqCourses;
+	private LinkedList<Course> lstReqCourses;
 
 	/**
 	 * @param title
@@ -81,20 +79,20 @@ public class Course {
 	 */
 	
 	// TODO: builder fuer Konstruktor erstellen.
-	public Course(String title, Date firstRegistrationDate,
-			Date lastRegistrationDate, Date lastDeregistrationDate) {
+	public Course(String title, int maxStudent, Date firstRegistrationDate,
+			Date lastRegistrationDate, Date lastDeregistrationDate, boolean steg, boolean steop) {
 		this.id = ++count;
 		this.title = title;
+		this.maxStudentCount = maxStudent;
 		this.firstRegistrationDate = firstRegistrationDate;
 		this.lastRegistrationDate = lastRegistrationDate;
 		this.lastDeregistrationDate = lastDeregistrationDate;
 		this.studentCount = 0;
 		this.lstStudents = new LinkedList<Student>();
 		this.lstGroups = new LinkedList<Group>();
-		this.lstAssumedCourses = new LinkedList<Course>();
 		this.regType = RegistrationTypeEnum.elektronisch;
-		this. reqSteop = false;
-		this. reqSteg = false;
+		this. reqSteop = steop;
+		this. reqSteg = steg;
 		this.active = true;
 		cal = Calendar.getInstance();
 	}
@@ -192,7 +190,7 @@ public class Course {
 	/**
 	 * @return the lstStudents
 	 */
-	public LinkedList<Student> getLstStudents() {
+	public LinkedList<Student> getAllRegisteredStudents() {
 		return lstStudents;
 	}
 
@@ -219,30 +217,6 @@ public class Course {
 		this.lstStudents = lstStudents;
 	}
 	
-	/**
-	 * @return the lstAssumedCourses
-	 */
-	
-	public LinkedList<Course> getAssumedCourses(){
-		return this.lstAssumedCourses;
-	}
-	
-	/**
-	 * @param Course
-	 *            one AssumedCourse to Set
-	 */
-	public void setLstAssumedCourse(Course cr) {
-		this.lstAssumedCourses.add(cr);
-	}
-	
-	/**
-	 * @param lstCourses
-	 *            the AssumedCourses to Set
-	 */
-	public void setLstAssumedCourses( LinkedList<Course> crs) {
-		this.lstAssumedCourses = crs;
-	}
-
 	/**
 	 * @param lecturer
 	 *            the lecturer to set
@@ -455,15 +429,15 @@ public class Course {
 	 * @return the reqCourses
 	 */
 	public LinkedList<Course> getReqCourses() {
-		return reqCourses;
+		return lstReqCourses;
 	}
 
 	/**
 	 * @param reqCourses the reqCourses to set
 	 */
 	public void setReqCourses(LinkedList<Course> reqCourses) {
-		this.reqCourses = new LinkedList<Course>();
-		this.reqCourses = reqCourses;
+		this.lstReqCourses = new LinkedList<Course>();
+		this.lstReqCourses = reqCourses;
 	}
 	
 	/**
