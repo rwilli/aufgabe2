@@ -85,7 +85,7 @@ entities::Person
 -lst_course: LinkedList&lt;Course&gt;
 -lst_group: LinkedList&lt;Group&gt;
 -lst_assessment: LinkedList&lt;Assessment&gt;
--lst_grade: LinkedList&lt;String&gt;
+-map_grade: HashMap&lt;String, GradeTypeEnum&gt;
 --
 +getMatrNr(): String
 +setMatrNr(nr: String)
@@ -98,8 +98,8 @@ entities::Person
 +subscribe(group: Group)
 +unsubscribe(group: Group)
 +listAllAssessments(): LinkedList&lt;Assessment&gt;
-+listAllGrades(): LinkedList&lt;String&gt;
-+addGrade(str: String)</panel_attributes>
++listAllGrades(): HashMap&lt;String, GradeTypeEnum&gt;
++addGrade(str: String, GradeTypeEnum)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>

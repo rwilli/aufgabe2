@@ -3,6 +3,7 @@ package entities;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.HashMap;
 
 import exception.SubscribeException;
 import exception.UnsubscribeException;
@@ -33,7 +34,7 @@ public class Student extends Person {
 	private List<Assessment> lst_assessments;
 	
 	// list with the student's grades
-	private List<String> lst_grades;
+	private HashMap<String,GradeTypeEnum> map_grades;
 	
 	/**
 	 * default constructor with given matrNr
@@ -51,7 +52,7 @@ public class Student extends Person {
 		this.lst_courses = new LinkedList<Course>();
 		this.lst_groups = new LinkedList<Group>();
 		this.lst_assessments = new LinkedList<Assessment>();
-		this.lst_grades = new LinkedList<String>();
+		this.map_grades = new HashMap<String, GradeTypeEnum>();
 	}
 
 	/**
@@ -144,8 +145,8 @@ public class Student extends Person {
 	 * 
 	 * @return list of the student's grades
 	 */
-	public List<String> listAllGrades() {
-		return this.lst_grades;
+	public HashMap<String,GradeTypeEnum> listAllGrades() {
+		return this.map_grades;
 	}
 	
 	/**
@@ -251,8 +252,11 @@ public class Student extends Person {
 	 * 
 	 * @param grade Grade
 	 */
-	public void addGrade(String grade) {
-		this.lst_grades.add(grade);
+	public void addGrade(String lvaName, GradeTypeEnum grade) {
+		
+		/* if grade already exists, it will be overwritten */
+		
+		this.map_grades.put(lvaName, grade );
 	}
 
 	/* (non-Javadoc)
@@ -267,7 +271,7 @@ public class Student extends Person {
 		result = prime * result
 				+ ((lst_courses == null) ? 0 : lst_courses.hashCode());
 		result = prime * result
-				+ ((lst_grades == null) ? 0 : lst_grades.hashCode());
+				+ ((map_grades == null) ? 0 : map_grades.hashCode());
 		result = prime * result
 				+ ((lst_groups == null) ? 0 : lst_groups.hashCode());
 		result = prime * result + ((matrNr == null) ? 0 : matrNr.hashCode());
@@ -295,10 +299,10 @@ public class Student extends Person {
 				return false;
 		} else if (!lst_courses.equals(other.lst_courses))
 			return false;
-		if (lst_grades == null) {
-			if (other.lst_grades != null)
+		if (map_grades == null) {
+			if (other.map_grades != null)
 				return false;
-		} else if (!lst_grades.equals(other.lst_grades))
+		} else if (!map_grades.equals(other.map_grades))
 			return false;
 		if (lst_groups == null) {
 			if (other.lst_groups != null)
