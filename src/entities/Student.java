@@ -34,7 +34,7 @@ public class Student extends Person {
 	private List<Assessment> lst_assessments;
 	
 	// list with the student's grades
-	private HashMap<String,GradeTypeEnum> map_grades;
+	private HashMap<Course,GradeTypeEnum> map_grades;
 	
 	/**
 	 * default constructor with given matrNr
@@ -52,7 +52,7 @@ public class Student extends Person {
 		this.lst_courses = new LinkedList<Course>();
 		this.lst_groups = new LinkedList<Group>();
 		this.lst_assessments = new LinkedList<Assessment>();
-		this.map_grades = new HashMap<String, GradeTypeEnum>();
+		this.map_grades = new HashMap<Course, GradeTypeEnum>();
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class Student extends Person {
 	 * 
 	 * @return list of the student's grades
 	 */
-	public HashMap<String,GradeTypeEnum> listAllGrades() {
+	public HashMap<Course,GradeTypeEnum> listAllGrades() {
 		return this.map_grades;
 	}
 	
@@ -160,6 +160,13 @@ public class Student extends Person {
 	    if (cr.getFirstRegistrationDate().after(cal.getTime()) || cr.getLastRegistrationDate().before(cal.getTime())) {
 	    	throw new SubscribeException("Look at the registration time");
 	    }
+	    
+	    if( !cr.isReqSteg() && !isHasSteg() ){
+	    	throw new SubscribeException("Required Steg not complied");
+		}
+	    if( !cr.isReqSteop() && !isHasSteop() ){
+	    	throw new SubscribeException("Required Steop not complied");
+		}
 		
 		if (!cr.getLstStudents().contains(this)) {
 			cr.incrementStudentCounter();
@@ -252,11 +259,11 @@ public class Student extends Person {
 	 * 
 	 * @param grade Grade
 	 */
-	public void addGrade(String lvaName, GradeTypeEnum grade) {
+	public void addGrade(Course cr, GradeTypeEnum grade) {
 		
 		/* if grade already exists, it will be overwritten */
 		
-		this.map_grades.put(lvaName, grade );
+		this.map_grades.put(cr, grade );
 	}
 
 	/* (non-Javadoc)
