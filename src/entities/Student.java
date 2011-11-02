@@ -44,6 +44,9 @@ public class Student extends Person {
 	 * @param lastName of the student
 	 * @param email of the student
 	 */
+	
+	/* TODO set STEG and STEOP automatically */
+	
 	public Student(String matrNr, String firstName, String lastName, String email) {
 		this.matrNr = matrNr;
 		this.setFirstName(firstName);
@@ -155,21 +158,27 @@ public class Student extends Person {
 	    }
 	    
 	    // check course requirements
-	    for (Course c: cr.getReqCourses()) {
-	    	if (!this.map_grades.containsKey(c.getTitle()))
-	    		throw new SubscribeException("Required Course not complied " + c.getTitle());
+	    if( cr.getReqCourses() != null){
+	    	
+	    
+		    for (Course c: cr.getReqCourses()) {
+		    	if (!this.map_grades.containsKey(c.getTitle()))
+		    		throw new SubscribeException("Required Course not complied " + c.getTitle());
+		    }
 	    }
 	    
-	    if( !cr.isReqSteg() && !isHasSteg() ){
-	    	throw new SubscribeException("Required Steg not complied");
+	    if( cr.isReqSteg() && !isHasSteg() ){
+	    	throw new SubscribeException("Required Steg not completed");
 		}
-	    if( !cr.isReqSteop() && !isHasSteop() ){
-	    	throw new SubscribeException("Required Steop not complied");
+	    if( cr.isReqSteop() && !isHasSteop() ){
+	    	throw new SubscribeException("Required Steop not completed");
 		}
 		
-		if (!cr.getLstStudents().contains(this)) {
+	    /* TODO was ist wenn course voll ? */
+	    
+		if (!cr.getAllRegisteredStudents().contains(this)) {
 			cr.incrementStudentCounter();
-			cr.getLstStudents().add(this);
+			cr.getAllRegisteredStudents().add(this);
 			this.lst_courses.add(cr);
 		} else {
 			throw new SubscribeException("Student already attending this course.");
@@ -188,7 +197,7 @@ public class Student extends Person {
 	    if (cr.getLastDeregistrationDate().before(cal.getTime())) {
 	    	throw new UnsubscribeException("Deregistration expired.");
 	    } else {	
-	    	if (cr.getLstStudents().remove(this)) {
+	    	if (cr.getAllRegisteredStudents().remove(this)) {
 				cr.decrementStudentCounter();
 				this.lst_courses.remove(cr);
 	    	} else  		
