@@ -344,8 +344,6 @@ public class Course {
 	
 	/*
 	public void registerStudent(Student s) throws AdministrationException {
-
-		// TODO: Steop / Steg ueberpruefen
 		
 		
 		if (firstRegistrationDate.after(cal.getTime())
