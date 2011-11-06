@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.LinkedList;
+
 /**
  * The person class is an abstract class that
  * acts as supertype for student and lecturer
@@ -15,6 +17,9 @@ public abstract class Person {
 	
 	// email address of the person
 	private String email;
+	
+	// messagebox of the person
+	private LinkedList<Message> lst_messages;
 	
 	/**
 	 * Getter firstname
@@ -68,7 +73,8 @@ public abstract class Person {
 	 * Informs the person about changes
 	 * @return informationtext
 	 */
-	public String inform() {
+	public String inform(Message m) {
+		this.lst_messages.add(m);
 		return "Email send to " + this.email;
 	}
 	

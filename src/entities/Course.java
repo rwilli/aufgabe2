@@ -385,16 +385,17 @@ public class Course {
 	}
 	*/
 	/**
-	 * cancels the course
+	 * cancels the course with the given message
+	 * @param m reason for the cancel
 	 * @throws AdministrationException if the course was already canceled before;
 	 */
-	public void cancelCourse() {
+	public void cancelCourse(Message m) {
 		if (this.active == true) {
 			this.active = false; 
 			if (this.lecturer != null) {
-				inform(this.lstStudents, this.lecturer);
+				inform(this.lstStudents, this.lecturer, m);
 			} else {
-				inform(this.lstStudents);
+				inform(this.lstStudents, m);
 			}
 		}
 	}
@@ -403,9 +404,9 @@ public class Course {
 	 * Informs the students attending this course.
 	 * @param students
 	 */
-	public void inform(LinkedList<Student> students) {
+	public void inform(LinkedList<Student> students, Message m) {
 		for (Student s : students) {
-			s.inform();
+			s.inform(m);
 		}
 	}
 	
@@ -415,10 +416,10 @@ public class Course {
 	 * @param students
 	 * @param l
 	 */
-	public void inform(LinkedList<Student> students, Lecturer l) {
-		l.inform();
+	public void inform(LinkedList<Student> students, Lecturer l, Message m) {
+		l.inform(m);
 		for (Student s : students) {
-			s.inform();
+			s.inform(m);
 		}
 		
 	}
