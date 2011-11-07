@@ -3,11 +3,11 @@ package entities;
 import java.util.Date;
 import java.util.LinkedList;
 
-public class Assessment {
+public abstract class Assessment {
 
 	private String title;
 	private int maxStudentNumber;
-	private AssessmentTypeEnum assessmentType;
+	//private AssessmentTypeEnum assessmentType;
 	private Date dateOfAssessment;
 	private Date firstRegistrationDate;
 	private Date lastRegistrationDate;
@@ -16,11 +16,11 @@ public class Assessment {
 	private LinkedList<Student> lstStudents;
 
 	public Assessment(String title, int maxStudentNumber,
-			AssessmentTypeEnum assessmentType, Date dateOfAssessment, Date firstRegDate,
+			 Date dateOfAssessment, Date firstRegDate,
 			Date lastRegDate, Date lastDeRegDate) {
 		this.title = title;
 		this.maxStudentNumber = maxStudentNumber;
-		this.assessmentType = assessmentType;
+		//this.assessmentType = assessmentType;
 		this.dateOfAssessment = dateOfAssessment;
 		this.setFirstRegistrationDate(firstRegDate);
 		this.setLastRegistrationDate(lastRegDate);

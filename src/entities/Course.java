@@ -49,12 +49,6 @@ public class Course {
 	// maximum number of registrations
 	private int maxStudentCount;
 
-	// STEOP required
-	private boolean reqSteop;
-
-	// STEG required
-	private boolean reqSteg;
-
 	// RegistrationType for this course
 	private RegistrationTypeEnum regType;
 
@@ -65,7 +59,7 @@ public class Course {
 	private Calendar cal;
 	
 	// required Courses for the current course, can be null.
-	private LinkedList<Course> lstReqCourses;
+	private LinkedList<Prerequisite> lstPrerequisite;
 
 	/**
 	 * @param title
@@ -80,7 +74,7 @@ public class Course {
 	
 	// TODO: builder fuer Konstruktor erstellen.
 	public Course(String title, int maxStudent, Date firstRegistrationDate,
-			Date lastRegistrationDate, Date lastDeregistrationDate, boolean steg, boolean steop) {
+			Date lastRegistrationDate, Date lastDeregistrationDate) {
 		this.id = ++count;
 		this.title = title;
 		this.maxStudentCount = maxStudent;
@@ -91,10 +85,25 @@ public class Course {
 		this.lstStudents = new LinkedList<Student>();
 		this.lstGroups = new LinkedList<Group>();
 		this.regType = RegistrationTypeEnum.elektronisch;
-		this. reqSteop = steop;
-		this. reqSteg = steg;
 		this.active = true;
 		cal = Calendar.getInstance();
+	}
+	
+	public Course(String title, int maxStudent, Date firstRegistrationDate,
+			Date lastRegistrationDate, Date lastDeregistrationDate, LinkedList<Prerequisite> lst) {
+		this.id = ++count;
+		this.title = title;
+		this.maxStudentCount = maxStudent;
+		this.firstRegistrationDate = firstRegistrationDate;
+		this.lastRegistrationDate = lastRegistrationDate;
+		this.lastDeregistrationDate = lastDeregistrationDate;
+		this.studentCount = 0;
+		this.lstStudents = new LinkedList<Student>();
+		this.lstGroups = new LinkedList<Group>();
+		this.regType = RegistrationTypeEnum.elektronisch;
+		this.active = true;
+		cal = Calendar.getInstance();
+		this.lstPrerequisite = lst;
 	}
 
 	/**
@@ -267,36 +276,6 @@ public class Course {
 	}
 
 	/**
-	 * @return the reqSteop
-	 */
-	public boolean isReqSteop() {
-		return reqSteop;
-	}
-
-	/**
-	 * @param reqSteop
-	 *            the reqSteop to set
-	 */
-	public void setReqSteop(boolean reqSteop) {
-		this.reqSteop = reqSteop;
-	}
-
-	/**
-	 * @return the reqSteg
-	 */
-	public boolean isReqSteg() {
-		return reqSteg;
-	}
-
-	/**
-	 * @param reqSteg
-	 *            the reqSteg to set
-	 */
-	public void setReqSteg(boolean reqSteg) {
-		this.reqSteg = reqSteg;
-	}
-
-	/**
 	 * @return the regType
 	 */
 	public RegistrationTypeEnum getRegType() {
@@ -427,16 +406,8 @@ public class Course {
 	/**
 	 * @return the reqCourses
 	 */
-	public LinkedList<Course> getReqCourses() {
-		return lstReqCourses;
-	}
-
-	/**
-	 * @param reqCourses the reqCourses to set
-	 */
-	public void setReqCourses(LinkedList<Course> reqCourses) {
-		this.lstReqCourses = new LinkedList<Course>();
-		this.lstReqCourses = reqCourses;
+	public LinkedList<Prerequisite> getPrerequisites() {
+		return this.lstPrerequisite;
 	}
 	
 	/**

@@ -67,43 +67,6 @@ public class Student extends Person {
 		return matrNr;
 	}
 
-	
-	/**
-	 * Getter steop
-	 * 
-	 * @return the hasSteop
-	 */
-	public boolean isHasSteop() {
-		return hasSteop;
-	}
-
-	/**
-	 * Setter steop
-	 * 
-	 * @param hasSteop the hasSteop to set
-	 */
-	public void setHasSteop(boolean hasSteop) {
-		this.hasSteop = hasSteop;
-	}
-
-	/**
-	 * Getter steg
-	 * 
-	 * @return the hasSteg
-	 */
-	public boolean isHasSteg() {
-		return hasSteg;
-	}
-
-	/**
-	 * Setter steg
-	 * 
-	 * @param hasSteg the hasSteg to set
-	 */
-	public void setHasSteg(boolean hasSteg) {
-		this.hasSteg = hasSteg;
-	}
-
 	/**
 	 * List all groups of the student for which
 	 * he is registered.
@@ -158,21 +121,14 @@ public class Student extends Person {
 	    }
 	    
 	    // check course requirements
-	    if( cr.getReqCourses() != null){
-	    	
-	    
-		    for (Course c: cr.getReqCourses()) {
-		    	if (!this.map_grades.containsKey(c.getTitle()))
-		    		throw new SubscribeException("Required Course not complied " + c.getTitle());
-		    }
+	    if( cr.getPrerequisites() != null){
+	    	for (Prerequisite p: cr.getPrerequisites()) {
+		    	for (Course c: p.listRequiredCourses()) {
+		    		if (!this.map_grades.containsKey(c))
+			    		throw new SubscribeException("Required Course not complied " + c.getTitle());
+		    	}
+	    	}
 	    }
-	    
-	    if( cr.isReqSteg() && !isHasSteg() ){
-	    	throw new SubscribeException("Required Steg not completed");
-		}
-	    if( cr.isReqSteop() && !isHasSteop() ){
-	    	throw new SubscribeException("Required Steop not completed");
-		}
 		
 	    /* TODO was ist wenn course voll ? */
 	    

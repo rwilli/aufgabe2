@@ -1,10 +1,14 @@
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.LinkedList;
 
 import entities.Course;
 import entities.GradeTypeEnum;
 import entities.Lecturer;
+import entities.Prerequisite;
+import entities.Steg;
+import entities.Steop;
 import entities.Student;
 
 import service.UniService;
@@ -41,18 +45,22 @@ public class Test {
 		 */
 		Course course1,course2,course3,course4;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		LinkedList<Prerequisite> lstPrerequisite1 = new LinkedList<Prerequisite>();
+		LinkedList<Course> lst1 = new LinkedList<Course>();
 		
 		try{
 			
 
 			course1 = new Course( "LVA_STEG", 1 , sdf.parse("2011-11-2"), sdf.parse("2012-11-2"),
-											sdf.parse("2012-11-2"), false, false);
+											sdf.parse("2012-11-2"));
 			course2 = new Course( "LVA_STEOP", 3 , sdf.parse("2011-11-2"), sdf.parse("2012-11-2"),
-											sdf.parse("2012-11-2"), true, false);
+											sdf.parse("2012-11-2"));
+			lstPrerequisite1.add(new Steg(course1));
+			lstPrerequisite1.add(new Steop(course2));
 			course3 = new Course( "LVA_REQ_STEG_AND_STEOP", 10 , sdf.parse("2011-11-2"), sdf.parse("2012-11-2"),
-											sdf.parse("2012-11-2"), true, true);
+											sdf.parse("2012-11-2"), lstPrerequisite1);
 			course4 = new Course( "LVA_STEG", 1 , sdf.parse("2012-11-2"), sdf.parse("2012-11-10"),
-											sdf.parse("2012-11-10"), true, true);
+											sdf.parse("2012-11-10"));
 		
 	
 		
@@ -73,7 +81,7 @@ public class Test {
 		
 		Student student2 = new Student("1123456", "Patrick", "Fuerst", "patrick.fuerst@inode.at");
 		student2.addGrade(course1, GradeTypeEnum.B3);
-		student2.setHasSteg(true);
+		//student2.setHasSteg(true);
 		
 		/** 
 		 * Student3 Properties: completed STEOP and STEP
@@ -82,8 +90,8 @@ public class Test {
 		Student student3 = new Student("1099993", "Ihave", "SteogAndSteg", "steopanssteg@as.at");
 		student3.addGrade(course1, GradeTypeEnum.S1);
 		student3.addGrade(course2, GradeTypeEnum.S1);
-		student3.setHasSteg(true);
-		student3.setHasSteop(true);
+		//student3.setHasSteg(true);
+		//student3.setHasSteop(true);
 
 	
 
