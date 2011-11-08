@@ -123,7 +123,7 @@ public class Student extends Person {
 		
 	    // check if student is already subscribed
 		if (!cr.getAllRegisteredStudents().contains(this)) {
-            // check maximum student number
+		    // check maximum student number
 			if (cr.getStudentCount() < cr.getMaxStudentCount()) {
 				cr.incrementStudentCounter();
 				cr.getAllRegisteredStudents().add(this);
@@ -175,8 +175,6 @@ public class Student extends Person {
 		} else {
 			throw new SubscribeException("Student already attending this assessment.");
 		}
-		
-		//TODO was wenn maxStudent erreicht?
 	}
 	
 	/**

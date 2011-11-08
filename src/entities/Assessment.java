@@ -48,7 +48,6 @@ public abstract class Assessment {
 			Date lastRegDate, Date lastDeRegDate) {
 		this.setTitle(title);
 		this.setMaxStudentNumber(maxStudentNumber);
-		//this.assessmentType = assessmentType;
 		this.setDateOfAssessment(dateOfAssessment);
 		this.setFirstRegistrationDate(firstRegDate);
 		this.setLastRegistrationDate(lastRegDate);
@@ -57,18 +56,50 @@ public abstract class Assessment {
 		this.setLstStudents(new LinkedList<Student>());
 	}
 	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public int getMaxStudentNumber() {
+		return maxStudentNumber;
+	}
+
+	public void setMaxStudentNumber(int maxStudentNumber) {
+		this.maxStudentNumber = maxStudentNumber;
+	}
+
+	public Date getDateOfAssessment() {
+		return dateOfAssessment;
+	}
+
+	public void setDateOfAssessment(Date dateOfAssessment) {
+		this.dateOfAssessment = dateOfAssessment;
+	}
+
+	public int getStudentNumber() {
+		return studentNumber;
+	}
+
+	public void setStudentNumber(int studentNumber) {
+		this.studentNumber = studentNumber;
+	}
+
 	/**
 	 * Increment the currently student number
 	 */
 	public void incrementStudentCounter() {
-		this.setStudentNumber(this.getStudentNumber() + 1);
+		this.studentNumber++;
 	}
 	
 	/**
 	 * Decrement the currently student number
 	 */
 	public void decrementStudentCounter() {
-		this.setStudentNumber(this.getStudentNumber() - 1);
+		this.studentNumber--;
 	}
 
 	/**
@@ -149,38 +180,13 @@ public abstract class Assessment {
 	 */
 	@Override
 	public String toString() {
-		return "Assessment: " + title;	}
-
-	public Date getDateOfAssessment() {
-		return dateOfAssessment;
-	}
-
-	public void setDateOfAssessment(Date dateOfAssessment) {
-		this.dateOfAssessment = dateOfAssessment;
-	}
-
-	public int getStudentNumber() {
-		return studentNumber;
-	}
-
-	public void setStudentNumber(int studentNumber) {
-		this.studentNumber = studentNumber;
-	}
-
-	public int getMaxStudentNumber() {
-		return maxStudentNumber;
-	}
-
-	public void setMaxStudentNumber(int maxStudentNumber) {
-		this.maxStudentNumber = maxStudentNumber;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
+		return "Assessment: " + title + ", "
+				+ maxStudentNumber + ", " + dateOfAssessment
+				+ ", " + firstRegistrationDate
+				+ ", " + lastRegistrationDate
+				+ ", " + lastDeregistrationDate
+				+ ", " + studentNumber + ", "
+				+ lstStudents;
 	}
 
 }
