@@ -8,6 +8,15 @@ import java.util.Date;
  */
 public class DisposalExam extends Assessment {
 
+	/**
+	 * 
+	 * @param title
+	 * @param maxStudentNumber
+	 * @param dateOfAssessment
+	 * @param firstRegDate
+	 * @param lastRegDate
+	 * @param lastDeRegDate
+	 */
 	public DisposalExam(String title, int maxStudentNumber,
 			Date dateOfAssessment, Date firstRegDate, Date lastRegDate,
 			Date lastDeRegDate) {

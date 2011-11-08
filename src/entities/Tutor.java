@@ -18,14 +18,5 @@ public class Tutor extends Student {
 	public Tutor(String matrNr, String firstName, String lastName, String email) {
 		super(matrNr, firstName, lastName, email);
 	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "Tutor: " + this.getMatrNr() + ", " + this.getFirstName() + ", "
-				+ this.getLastName() + ", " + this.getEmail();
-	}
 	
 }
