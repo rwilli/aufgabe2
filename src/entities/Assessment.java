@@ -18,23 +18,23 @@ public abstract class Assessment {
 	public Assessment(String title, int maxStudentNumber,
 			 Date dateOfAssessment, Date firstRegDate,
 			Date lastRegDate, Date lastDeRegDate) {
-		this.title = title;
-		this.maxStudentNumber = maxStudentNumber;
+		this.setTitle(title);
+		this.setMaxStudentNumber(maxStudentNumber);
 		//this.assessmentType = assessmentType;
-		this.dateOfAssessment = dateOfAssessment;
+		this.setDateOfAssessment(dateOfAssessment);
 		this.setFirstRegistrationDate(firstRegDate);
 		this.setLastRegistrationDate(lastRegDate);
 		this.setLastDeregistrationDate(lastDeRegDate);
-		this.studentNumber = 0;
+		this.setStudentNumber(0);
 		this.setLstStudents(new LinkedList<Student>());
 	}
 	
 	public void incrementStudentCounter() {
-		this.studentNumber++;
+		this.setStudentNumber(this.getStudentNumber() + 1);
 	}
 	
 	public void decrementStudentCounter() {
-		this.studentNumber--;
+		this.setStudentNumber(this.getStudentNumber() - 1);
 	}
 
 	/**
@@ -93,6 +93,7 @@ public abstract class Assessment {
 		this.lstStudents = lstStudents;
 	}
 
+<<<<<<< HEAD
 	@Override
 	public String toString() {
 		return "Assessment: " + title + ", "
@@ -104,4 +105,37 @@ public abstract class Assessment {
 				+ lstStudents;
 	}
 	
+=======
+	public Date getDateOfAssessment() {
+		return dateOfAssessment;
+	}
+
+	public void setDateOfAssessment(Date dateOfAssessment) {
+		this.dateOfAssessment = dateOfAssessment;
+	}
+
+	public int getStudentNumber() {
+		return studentNumber;
+	}
+
+	public void setStudentNumber(int studentNumber) {
+		this.studentNumber = studentNumber;
+	}
+
+	public int getMaxStudentNumber() {
+		return maxStudentNumber;
+	}
+
+	public void setMaxStudentNumber(int maxStudentNumber) {
+		this.maxStudentNumber = maxStudentNumber;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+>>>>>>> getter and setter added
 }
