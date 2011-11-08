@@ -92,13 +92,14 @@ public class UniService {
 	 */
 	
 	public void printAllCoursesWithLecturerAndStudents(){
+		System.out.println("\n-----------------AllCoursesWithLecturerAndStudents----------------");
 
 		Iterator<Course> iter = lstActiveCourses.iterator();
 
 		while(iter.hasNext())
 		{
 			Course cr = iter.next();
-			System.out.println( "Titel: "  + cr.toString() +"\t"+ "Lecturer: " + cr.getLecturer().toString());
+			System.out.println( "\nTitel: "  + cr.toString() +"\t"+ "Lecturer: " + cr.getLecturer().toString());
 			
 			LinkedList<Student> lst_students =  cr.getAllRegisteredStudents();
 			Iterator<Student> iter2 = lst_students.iterator();
@@ -119,12 +120,13 @@ public class UniService {
 	}
 	public void printAll(){
 
+		System.out.println("\n----------------------------All----------------------");
 		Iterator<Course> iter = lstActiveCourses.iterator();
 
 		while(iter.hasNext())
 		{
 			Course cr = iter.next();
-			System.out.println( "Titel: "  + cr.toString() +"\t"+ "Lecturer: " + cr.getLecturer().toString());
+			System.out.println( "\nTitel: "  + cr.toString() +"\t"+ "Lecturer: " + cr.getLecturer().toString());
 			
 			LinkedList<Student> lstStudents =  cr.getAllRegisteredStudents();
 			Iterator<Student> iter2 = lstStudents.iterator();
