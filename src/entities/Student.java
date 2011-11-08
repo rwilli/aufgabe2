@@ -12,7 +12,7 @@ import exception.UnsubscribeException;
  * The student class extends the abstract person class
  * and implements methods for student actions
  * 
- * @author Gruppe222 - Rainer
+ * @author Gruppe222 - Rainer, Patrick
  */
 public class Student extends Person {
 	// student id
@@ -31,16 +31,13 @@ public class Student extends Person {
 	private HashMap<Course,GradeTypeEnum> map_grades;
 	
 	/**
-	 * default constructor with given matrNr
+	 * default constructor
 	 * 
 	 * @param matrNr student unique id
 	 * @param firstName of the student
 	 * @param lastName of the student
 	 * @param email of the student
 	 */
-	
-	/* TODO set STEG and STEOP automatically */
-	
 	public Student(String matrNr, String firstName, String lastName, String email) {
 		this.matrNr = matrNr;
 		this.setFirstName(firstName);
@@ -124,7 +121,9 @@ public class Student extends Person {
 	    	}
 	    }
 		
+	    // check if student is already subscribed
 		if (!cr.getAllRegisteredStudents().contains(this)) {
+			// check maximum student number
 			if (cr.getStudentCount() <= cr.getMaxStudentCount()) {
 				cr.incrementStudentCounter();
 				cr.getAllRegisteredStudents().add(this);
@@ -222,12 +221,14 @@ public class Student extends Person {
 	 * @param grade Grade
 	 */
 	public void addGrade(Course cr, GradeTypeEnum grade) {
-		
-		/* if grade already exists, it will be overwritten */
-		
+		// if grade already exists, it will be overwritten
 		this.map_grades.put(cr, grade );
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see entities.Person#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -244,6 +245,10 @@ public class Student extends Person {
 		return result;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see entities.Person#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

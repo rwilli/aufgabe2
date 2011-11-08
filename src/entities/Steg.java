@@ -3,7 +3,7 @@ package entities;
 import java.util.LinkedList;
 
 /**
- * @author rainer
+ * @author Gianni
  *
  */
 public class Steg extends Prerequisite {
