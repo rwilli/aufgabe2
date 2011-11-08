@@ -49,6 +49,7 @@ public abstract class Assessment {
 		this.setTitle(title);
 		this.setMaxStudentNumber(maxStudentNumber);
 		this.setDateOfAssessment(dateOfAssessment);
+
 		this.setFirstRegistrationDate(firstRegDate);
 		this.setLastRegistrationDate(lastRegDate);
 		this.setLastDeregistrationDate(lastDeRegDate);
