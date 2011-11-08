@@ -24,7 +24,8 @@ public class Tutor extends Student {
 	 */
 	@Override
 	public String toString() {
-		return "Tutor []";
+		return "Tutor: " + this.getMatrNr() + ", " + this.getFirstName() + ", "
+				+ this.getLastName() + ", " + this.getEmail();
 	}
 	
 }

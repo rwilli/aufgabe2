@@ -86,7 +86,7 @@ public class Student extends Person {
 	 * created an instance from Student to add 
 	 * some Assessments
 	 * 
-	 * @return void
+	 * @param a Assessment
 	 */
 	public void addAssessments(Assessment a) {
 		this.lst_assessments.add(a);
