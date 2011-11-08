@@ -125,7 +125,7 @@ public class Student extends Person {
 	    }
 		
 		if (!cr.getAllRegisteredStudents().contains(this)) {
-			if (cr.getStudentCount() <= cr.getMaxStudentCount()) {
+			if (cr.getStudentCount() < cr.getMaxStudentCount()) {
 				cr.incrementStudentCounter();
 				cr.getAllRegisteredStudents().add(this);
 				this.lst_courses.add(cr);
