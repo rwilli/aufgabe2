@@ -7,6 +7,7 @@ import entities.Assessment;
 import entities.Course;
 import entities.DisposalExam;
 import entities.GradeTypeEnum;
+import entities.Group;
 import entities.Lecturer;
 import entities.Message;
 import entities.Prerequisite;
@@ -14,6 +15,7 @@ import entities.SpokenExam;
 import entities.Steg;
 import entities.Steop;
 import entities.Student;
+import entities.Tutor;
 
 import service.UniService;
 
@@ -47,8 +49,10 @@ public class Test {
 		 * Course3: STEG and STEOP required ,RegDate Frame is now, maxNumOfStudents 10
 		 * Course4: FirstRegDate in Future,STEG and STEOP required
 		 * Course5: to simulate Case4, deRegDate is set in past. 
+		 * Course6: Group, RegDate Frame is now, maxNumOfStudents 3, to simulate with groups
+		 * 			maxNumOfStudents is set to 3 because all groupse can take 3 students. 
 		 */
-		Course course1,course2,course3,course4,course5;
+		Course course1,course2,course3,course4,course5,course6;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		LinkedList<Prerequisite> lstPrerequisite1 = new LinkedList<Prerequisite>();		
 		LinkedList<Prerequisite> lstPrerequisite2 = new LinkedList<Prerequisite>();
@@ -74,6 +78,9 @@ public class Test {
 			
 			course5 = new Course( "LVA_STARTED", 1 , sdf.parse("2011-11-2"), sdf.parse("2012-11-10"),
 					sdf.parse("2011-11-1"));
+			
+			course6 = new Course( "LVA_GROUPS", 3 , sdf.parse("2011-11-2"), sdf.parse("2012-11-2"),
+					sdf.parse("2012-11-2"));
 	
 		
 	
@@ -100,24 +107,23 @@ public class Test {
 		student3.addGrade(course1, GradeTypeEnum.S1);
 		student3.addGrade(course2, GradeTypeEnum.S1);
 		
+		/* Add the Students to the System */
+		
 		uniService.addPersonToSystem(student1);
 		uniService.addPersonToSystem(student2);
 		uniService.addPersonToSystem(student3);
 
-//	
-//		Student student4 = new Student(matNr, firstName, lastName, email);
-//		Student student5 = new Student(matNr, firstName, lastName, email);
-//		Student student6 = new Student(matNr, firstName, lastName, email);
-//		Student student7 = new Student(matNr, firstName, lastName, email);
-//		Student student8 = new Student(matNr, firstName, lastName, email);
 		
 		/* Create Tutor */
-//		
-//		Tutor tutor1 = new Tutor(matNr,firstName, lastName, email);
-//		Tutor tutor2 = new Tutor(matNr,firstName, lastName, email);
-//		Tutor tutor3 = new Tutor(matNr,firstName, lastName, email);
-//		Tutor tutor4 = new Tutor(matNr,firstName, lastName, email);
 		
+		Tutor tutor1 = new Tutor("0345334","Tutor1", "Adam", "asd@sa.sa");
+		Tutor tutor2 = new Tutor("0567555","Tutor2", "Peter", "sdf@sa.sa");
+
+	
+		/* Add tutor to the system */
+		uniService.addPersonToSystem(tutor1);
+		uniService.addPersonToSystem(tutor2);
+
 		
 		/* Create Lecturer */
 		
@@ -126,6 +132,13 @@ public class Test {
 		Lecturer lecturer3 = new Lecturer("Prof.Assist","Kale", "Pot", "Kale@pot.at");
 		Lecturer lecturer4 = new Lecturer("Dr","Moritz", "Hossen", "Moritz@hossen.at");
 		
+		/* Add the Lecturer to the System */
+		uniService.addPersonToSystem(lecturer1);
+		uniService.addPersonToSystem(lecturer2);
+		uniService.addPersonToSystem(lecturer3);
+		uniService.addPersonToSystem(lecturer4);
+
+		
 	    /* Set Lecturer to Course */
 		
 		course1.setLecturer(lecturer1);
@@ -133,6 +146,7 @@ public class Test {
 		course3.setLecturer(lecturer3);
 		course4.setLecturer(lecturer4);
 		course5.setLecturer(lecturer4);
+		course6.setLecturer(lecturer2);
 		
 		/* Add the Courses to the Service */
 		
@@ -141,6 +155,7 @@ public class Test {
 		uniService.addCourseToSystem(course3);
 		uniService.addCourseToSystem(course4);
 		uniService.addCourseToSystem(course5);
+		uniService.addCourseToSystem(course6);
 		
 		/*
 		 * Start Testing all different TestCases
@@ -237,7 +252,7 @@ public class Test {
 		 * Case6:
 		 * Student2 isnt«able to register to course 3 because of STEOP
 		 * 
-		 * Expected Output:  Required Steg not completed
+		 * Expected Output:  Required Steop not completed
 		 */
 		
 		try{
@@ -278,6 +293,21 @@ public class Test {
 			System.out.println("Case8\t"+ e.toString() );	
 
 		}
+		
+		/**
+		 * Case8.5:
+		 * Register a Tutor to a course
+		 * 
+		 * Expected Output: nothing
+		 */
+		
+		try{
+			tutor1.subscribe(course6);
+
+		}catch(SubscribeException e){
+			System.out.println("Case8.5\t"+ e.toString() );	
+
+		}
 		/* Print current Status of all Courses
 		 * 
 		 * Expected Output: All Courses and 
@@ -285,6 +315,7 @@ public class Test {
 		 * 			Course1 contains: Student1
 		 * 			Course3 contains: Student3	
 		 * 			Course5 contains: Student3
+		 * 			Course6 contains: Tutor3
 		 *  
 		 *  */
 		
@@ -364,9 +395,10 @@ public class Test {
 		
 		/* ---------- End Test: Subscribe and unsubscribe for Assessments ------- */
 
+	
 		/* Print current Status of all Courses
 		 * 
-		 * Expected Output: All Courses and 
+		 * Expected Output: All Courses except Course 2, because it is canceled  and 
 		 * 
 		 * 			Course1 contains: Student1
 		 * 					Assessment1 : 
@@ -375,13 +407,97 @@ public class Test {
 		 * 								Student3
 		 * 			Course3 contains: Student3	
 		 * 			Course5 contains: Student3
+		 * 			Course6 contains: Tutor1
 		 *  
 		 *  */
 		
 		uniService.printAllCoursesWithAll();
 		
-		uniService.printAllStudents();
+		
+		/* List all students with grades
+		 * 
+		 * Expected Output: 
+		 * 					Student1:nothing
+		 * 					Student2: Steg = 3
+		 * 					Student3: Steop = 1 Steg = 1
+		 * 					Tutor1: nothing
+		 * 					Tutor2: nothin
+		 *  */
+
+		uniService.printAllStudentsWithGrades();
+		
 	
+		
+		/* ---------- Start Test: Subscribe to a Course with automatically join a group ------- */
+
+		
+		/*Create Groups */
+		
+		Group groupe1 = new Group(1,"Groupe1",1,tutor1 );
+		Group groupe2 = new Group(2,"Groupe2",1,tutor2 );
+		
+		/* Add Groups to Course6 */
+		
+		course6.addGroup(groupe1);
+		course6.addGroup(groupe2);
+		
+		/**
+		 * Case11:
+		 * Student1 can subscribe to course6/group1
+		 * 
+		 * Expected Output:nothing
+		 * 
+		 */
+		try{
+			student1.subscribe(course6);
+			
+		}catch(SubscribeException e){
+			System.out.println( "Case11\t" +e.toString() );	
+
+		}
+		
+		/**
+		 * Case12:
+		 * Student2 can subscribe to course6/group2
+		 * Because Groupe1 is full it takes Groupe2
+		 * 
+		 * Expected Output:nothing
+		 * 
+		 */
+		try{
+			student2.subscribe(course6);
+			
+		}catch(SubscribeException e){
+			System.out.println( "Case12\t" +e.toString() );	
+
+		}
+		/**
+		 * Case13:
+		 * Student3 can«t subscribe to course6/group1 or 2
+		 * Because Groupe1 and 2  are full
+		 * 
+		 * Expected Output: All Groups are full
+		 * 
+		 */
+		try{
+			student3.subscribe(course6);
+			
+		}catch(SubscribeException e){
+			System.out.println( "Case13\t" +e.toString() );	
+
+		}
+		
+		
+		/* List all courses with groups and students
+		 * 
+		 * Expected Output: 
+		 * 			all courses except course2 because it was canceled and course6 has:
+		 * 
+		 * 			Group1 with Student1 and
+		 * 			Group2 with Student2
+		 *  */
+		
+		uniService.printAllCourseWithGroupsAndStudents();
 		
 		}catch(ParseException e){
 
