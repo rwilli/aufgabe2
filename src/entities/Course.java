@@ -1,6 +1,5 @@
 package entities;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
@@ -75,7 +74,6 @@ public class Course {
 	 *            the last deregistration date of the course
 	 */
 	
-	// TODO: builder fuer Konstruktor erstellen.
 	public Course(String title, int maxStudent, Date firstRegistrationDate,
 			Date lastRegistrationDate, Date lastDeregistrationDate) {
 		this.id = ++count;
@@ -208,6 +206,10 @@ public class Course {
 	 */
 	public void setLstGroups(LinkedList<Group> lstGroups) {
 		this.lstGroups = lstGroups;
+	}
+	
+	public void addGroup( Group g) {
+		this.lstGroups.add(g);
 	}
 
 	/**
@@ -402,13 +404,8 @@ public class Course {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-		return this.id + "\t" + this.title + "\t\t"
-				+ sdf.format(this.firstRegistrationDate) + "\t"
-				+ sdf.format(this.lastRegistrationDate) + "\t"
-				+ sdf.format(this.lastDeregistrationDate) + "\t"
-				+ this.studentCount;
+		return this.id + "\t" + this.title;
 	}
 	/*
 	 * (non-Javadoc)
