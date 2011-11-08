@@ -19,7 +19,7 @@ public abstract class Person {
 	private String email;
 	
 	// messagebox of the person
-	private LinkedList<Message> lst_messages;
+	private LinkedList<Message> lst_messages = new LinkedList<Message>();
 	
 	/**
 	 * Getter firstname
