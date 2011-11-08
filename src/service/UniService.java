@@ -182,13 +182,13 @@ public class UniService {
 		Iterator<Person> p = this.lstPersons.iterator();
 		
 		while(p.hasNext()){
-			p.next();
-			
+			Person p1 = p.next();
 
-			if(p instanceof Student){
-				System.out.println(p);
+			if(p1 instanceof Student){
+				Student s = (Student) p1;
+				System.out.println(s);
 				
-				HashMap<Course,GradeTypeEnum> grades = ((Student) p).listAllGrades();
+				HashMap<Course,GradeTypeEnum> grades = s.listAllGrades();//((Student) p).listAllGrades();
 				System.out.println("\t"+grades);
 			}
 			
