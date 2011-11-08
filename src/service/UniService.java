@@ -4,7 +4,9 @@ package service;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import entities.Assessment;
 import entities.Course;
+import entities.Message;
 import entities.Student;
 import entities.Person;
 
@@ -50,16 +52,16 @@ public class UniService {
 	 * @throws ServiceException
 	 */
 	
-	public void deleteCourseFromSystem(Course cr) throws ServiceException{
+	public void deleteCourseFromSystem(Course cr, Message m) throws ServiceException{
 		
 		int index = lstActiveCourses.indexOf( cr );
 		if( index == -1 ) throw new ServiceException("Course "+cr.toString() + "not in the System");
 		
-		/* Weitere Exception handling? */
+		/*TODO Weitere Exception handling? */
 		
+		cr.cancelCourse(m);
 		this.lstDeletedCourses.add( lstActiveCourses.get( index ) );
-		
-		lstActiveCourses.remove(cr);
+		this.lstActiveCourses.remove(cr);
 		
 	}
 	
@@ -109,6 +111,55 @@ public class UniService {
 				
 				
 			}
+			
+			// TODO List Tutors? 
+		
+			
+		}
+	}
+	public void printAll(){
+
+		Iterator<Course> iter = lstActiveCourses.iterator();
+
+		while(iter.hasNext())
+		{
+			Course cr = iter.next();
+			System.out.println( "Titel: "  + cr.toString() +"\t"+ "Lecturer: " + cr.getLecturer().toString());
+			
+			LinkedList<Student> lstStudents =  cr.getAllRegisteredStudents();
+			Iterator<Student> iter2 = lstStudents.iterator();
+	
+		
+			while(iter2.hasNext())
+			{
+				Student st = iter2.next();
+				System.out.println( "\t" +  st.toString() );
+				
+				
+			}
+			
+			LinkedList<Assessment> lstAssessments = cr.getAllAssessments();
+			Iterator<Assessment> iter3 = lstAssessments.iterator();
+			
+			while(iter3.hasNext())
+			{
+				Assessment a = iter3.next();
+				System.out.println( "\t\t" +  a.toString() );
+				
+				LinkedList<Student> lstStudents2 = a.getLstStudents();
+				Iterator<Student> iter4 = lstStudents2.iterator();
+				
+
+				while(iter4.hasNext())
+				{
+					Student s = iter4.next();
+					System.out.println( "\t\t\t" +  s.toString() );
+					
+				}
+
+				
+			}
+
 			
 			// TODO List Tutors? 
 		
