@@ -18,12 +18,6 @@ public class Student extends Person {
 	// student id
 	private final String matrNr;
 	
-	// steop reached
-	private boolean hasSteop = false;
-	
-	// steg reached
-	private boolean hasSteg = false;
-	
 	// list with the student's courses
 	private List<Course> lst_courses;
 	
@@ -130,12 +124,13 @@ public class Student extends Person {
 	    	}
 	    }
 		
-	    /* TODO was ist wenn course voll ? */
-	    
 		if (!cr.getAllRegisteredStudents().contains(this)) {
-			cr.incrementStudentCounter();
-			cr.getAllRegisteredStudents().add(this);
-			this.lst_courses.add(cr);
+			if (cr.getStudentCount() <= cr.getMaxStudentCount()) {
+				cr.incrementStudentCounter();
+				cr.getAllRegisteredStudents().add(this);
+				this.lst_courses.add(cr);
+			} else
+				throw new SubscribeException("Course reached maximum student number.");
 		} else {
 			throw new SubscribeException("Student already attending this course.");
 		}
@@ -233,55 +228,50 @@ public class Student extends Person {
 		this.map_grades.put(cr, grade );
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + (hasSteg ? 1231 : 1237);
-		result = prime * result + (hasSteop ? 1231 : 1237);
+		result = prime * result
+				+ ((lst_assessments == null) ? 0 : lst_assessments.hashCode());
 		result = prime * result
 				+ ((lst_courses == null) ? 0 : lst_courses.hashCode());
 		result = prime * result
-				+ ((map_grades == null) ? 0 : map_grades.hashCode());
-		result = prime * result
 				+ ((lst_groups == null) ? 0 : lst_groups.hashCode());
+		result = prime * result
+				+ ((map_grades == null) ? 0 : map_grades.hashCode());
 		result = prime * result + ((matrNr == null) ? 0 : matrNr.hashCode());
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (!super.equals(obj))
 			return false;
-		if (!(obj instanceof Student))
+		if (getClass() != obj.getClass())
 			return false;
 		Student other = (Student) obj;
-		if (hasSteg != other.hasSteg)
-			return false;
-		if (hasSteop != other.hasSteop)
+		if (lst_assessments == null) {
+			if (other.lst_assessments != null)
+				return false;
+		} else if (!lst_assessments.equals(other.lst_assessments))
 			return false;
 		if (lst_courses == null) {
 			if (other.lst_courses != null)
 				return false;
 		} else if (!lst_courses.equals(other.lst_courses))
 			return false;
-		if (map_grades == null) {
-			if (other.map_grades != null)
-				return false;
-		} else if (!map_grades.equals(other.map_grades))
-			return false;
 		if (lst_groups == null) {
 			if (other.lst_groups != null)
 				return false;
 		} else if (!lst_groups.equals(other.lst_groups))
+			return false;
+		if (map_grades == null) {
+			if (other.map_grades != null)
+				return false;
+		} else if (!map_grades.equals(other.map_grades))
 			return false;
 		if (matrNr == null) {
 			if (other.matrNr != null)

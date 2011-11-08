@@ -182,14 +182,6 @@ public class Course {
 	}
 
 	/**
-	 * @param studentCount
-	 *            the studentCount to set
-	 */
-	public void setStudentCount(int studentCount) {
-		this.studentCount = studentCount;
-	}
-
-	/**
 	 * @return the id
 	 */
 	public int getId() {
