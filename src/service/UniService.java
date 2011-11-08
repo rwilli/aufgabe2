@@ -7,6 +7,8 @@ import java.util.LinkedList;
 
 import entities.Assessment;
 import entities.Course;
+import entities.Group;
+import entities.Lecturer;
 import entities.Message;
 import entities.Student;
 import entities.Person;
@@ -63,11 +65,9 @@ public class UniService {
 		
 		int index = lstActiveCourses.indexOf( cr );
 		if( index == -1 ) throw new ServiceException("Course "+cr.toString() + "not in the System");
-		
-		/*TODO Weitere Exception handling? */
-		
+	
 		cr.cancelCourse(m);
-		this.lstDeletedCourses.add( lstActiveCourses.get( index ) );
+		this.lstDeletedCourses.add( cr );
 		this.lstActiveCourses.remove(cr);
 		
 	}
@@ -119,9 +119,7 @@ public class UniService {
 				
 				
 			}
-			
-			// TODO List Tutors? 
-		
+
 			
 		}
 	}
@@ -167,17 +165,44 @@ public class UniService {
 				}
 
 				
-			}
-
-			
-			// TODO List Tutors? 
-		
+			}		
 			
 		}
 	}
+	
+	
+	public void printAllCourseWithGroupsAndStudents(){
+		
+		System.out.println("\n----------------------------AllCoursesWithGroupsAndStudents()----------------------");
+		Iterator<Course> iter = lstActiveCourses.iterator();
+
+		while(iter.hasNext())
+		{
+			Course cr = iter.next();
+			System.out.println( "\nTitel: "  + cr.toString() );
+		 
+			Iterator<Group> iter2 = cr.getGroups().iterator();
+	
+		
+			while(iter2.hasNext())
+			{
+				Group g = iter2.next();
+				System.out.println( "\t" +  g.toString() );
+				
+				Iterator<Student> iter3 = g.listAllStudents().iterator();
+			
+				while(iter3.hasNext())
+				{
+					Student s = iter3.next();
+					System.out.println( "\t\t" +  s.toString() );
+					
+				}
+			}
+		}		
+	}
 
 
-	public void printAllStudents() {
+	public void printAllStudentsWithGrades() {
 		
 		Iterator<Person> p = this.lstPersons.iterator();
 		
@@ -188,6 +213,7 @@ public class UniService {
 				Student s = (Student) p1;
 				System.out.println(s);
 				
+				System.out.println("\tGrades");
 				HashMap<Course,GradeTypeEnum> grades = s.listAllGrades();//((Student) p).listAllGrades();
 				System.out.println("\t"+grades);
 			}
@@ -195,6 +221,23 @@ public class UniService {
 		}
 		
 	}
+public void printAllLecturer(){
+		
+		Iterator<Person> p = this.lstPersons.iterator();
+		
+		while(p.hasNext()){
+			Person p1 = p.next();
+
+			if(p1 instanceof Lecturer){
+				Lecturer l = (Lecturer) p1;
+				System.out.println(l);
+				
+			}
+			
+		}
+		
+	}
+
 
 }
 
