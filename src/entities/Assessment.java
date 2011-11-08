@@ -92,4 +92,16 @@ public abstract class Assessment {
 	public void setLstStudents(LinkedList<Student> lstStudents) {
 		this.lstStudents = lstStudents;
 	}
+
+	@Override
+	public String toString() {
+		return "Assessment: " + title + ", "
+				+ maxStudentNumber + ", " + dateOfAssessment
+				+ ", " + firstRegistrationDate
+				+ ", " + lastRegistrationDate
+				+ ", " + lastDeregistrationDate
+				+ ", " + studentNumber + ", "
+				+ lstStudents;
+	}
+	
 }
