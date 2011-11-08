@@ -1,6 +1,7 @@
 
 package service;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -9,6 +10,7 @@ import entities.Course;
 import entities.Message;
 import entities.Student;
 import entities.Person;
+import entities.GradeTypeEnum;
 
 import exception.ServiceException;
 
@@ -43,6 +45,11 @@ public class UniService {
 	 */
 	public void addCourseToSystem(Course cr){
 		this.lstActiveCourses.add(cr);
+	}
+	
+	public void addPersonToSystem( Person p){
+		this.lstPersons.add(p);
+		
 	}
 	
 	/**
@@ -167,6 +174,26 @@ public class UniService {
 		
 			
 		}
+	}
+
+
+	public void printAllStudents() {
+		
+		Iterator<Person> p = this.lstPersons.iterator();
+		
+		while(p.hasNext()){
+			p.next();
+			
+
+			if(p instanceof Student){
+				System.out.println(p);
+				
+				HashMap<Course,GradeTypeEnum> grades = ((Student) p).listAllGrades();
+				System.out.println("\t"+grades);
+			}
+			
+		}
+		
 	}
 
 }

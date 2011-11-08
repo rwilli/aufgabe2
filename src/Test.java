@@ -100,7 +100,9 @@ public class Test {
 		student3.addGrade(course1, GradeTypeEnum.S1);
 		student3.addGrade(course2, GradeTypeEnum.S1);
 		
-	
+		uniService.addPersonToSystem(student1);
+		uniService.addPersonToSystem(student2);
+		uniService.addPersonToSystem(student3);
 
 //	
 //		Student student4 = new Student(matNr, firstName, lastName, email);
@@ -367,11 +369,18 @@ public class Test {
 		 * Expected Output: All Courses and 
 		 * 
 		 * 			Course1 contains: Student1
+		 * 					Assessment1 : 
+		 * 								Student1, Student2
+		 * 					Assessment2 : 
+		 * 								Student3
 		 * 			Course3 contains: Student3	
+		 * 			Course5 contains: Student3
 		 *  
 		 *  */
 		
 		uniService.printAllCoursesWithAll();
+		
+		uniService.printAllStudents();
 	
 		
 		}catch(ParseException e){
