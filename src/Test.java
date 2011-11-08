@@ -371,7 +371,7 @@ public class Test {
 		 *  
 		 *  */
 		
-		uniService.printAll();
+		uniService.printAllCoursesWithAll();
 	
 		
 		}catch(ParseException e){
