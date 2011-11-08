@@ -65,7 +65,7 @@ public class Test {
 		
 			lstPrerequisite2.add(new Steg(course1));
 			lstPrerequisite2.add(new Steop(course2));
-			course3 = new Course( "LVA_REQ_STEG_AND_STEOP", 10 , sdf.parse("2011-11-2"), sdf.parse("2012-11-2"),
+			course3 = new Course( "LVA_STEGSTEOP", 10 , sdf.parse("2011-11-2"), sdf.parse("2012-11-2"),
 											sdf.parse("2012-11-2"), lstPrerequisite2);
 		
 			
@@ -83,20 +83,20 @@ public class Test {
 		/**
 		 * Student1 Properties: newly enrolled Student, no Course, no Assessments .. nothing
 		 */
-		Student student1 = new Student("1100000", "Ihave", "Nothing", "ihave@nothing.at");
+		Student student1 = new Student("1100000", "Student1", "Nothing", "ihave@nothing.at");
 		
 		
 		/**
 		 * Student2 Properties: STEG completed
 		 */
 		
-		Student student2 = new Student("1123456", "Patrick", "Fuerst", "patrick.fuerst@inode.at");
+		Student student2 = new Student("1123456", "Student2", "Fuerst", "patrick.fuerst@inode.at");
 		student2.addGrade(course1, GradeTypeEnum.B3);
 		
 		/** 
 		 * Student3 Properties: completed STEOP and STEP
 		 */
-		Student student3 = new Student("1099993", "Ihave", "SteogAndSteg", "steopanssteg@as.at");
+		Student student3 = new Student("1099993", "Student3", "SteogAndSteg", "steopanssteg@as.at");
 		student3.addGrade(course1, GradeTypeEnum.S1);
 		student3.addGrade(course2, GradeTypeEnum.S1);
 		
@@ -130,6 +130,7 @@ public class Test {
 		course2.setLecturer(lecturer2);
 		course3.setLecturer(lecturer3);
 		course4.setLecturer(lecturer4);
+		course5.setLecturer(lecturer4);
 		
 		/* Add the Courses to the Service */
 		
@@ -137,7 +138,7 @@ public class Test {
 		uniService.addCourseToSystem(course2);
 		uniService.addCourseToSystem(course3);
 		uniService.addCourseToSystem(course4);
-		
+		uniService.addCourseToSystem(course5);
 		
 		/*
 		 * Start Testing all different TestCases
@@ -281,6 +282,7 @@ public class Test {
 		 * 
 		 * 			Course1 contains: Student1
 		 * 			Course3 contains: Student3	
+		 * 			Course5 contains: Student3
 		 *  
 		 *  */
 		

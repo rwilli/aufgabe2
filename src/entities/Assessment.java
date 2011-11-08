@@ -93,19 +93,11 @@ public abstract class Assessment {
 		this.lstStudents = lstStudents;
 	}
 
-<<<<<<< HEAD
+
 	@Override
 	public String toString() {
-		return "Assessment: " + title + ", "
-				+ maxStudentNumber + ", " + dateOfAssessment
-				+ ", " + firstRegistrationDate
-				+ ", " + lastRegistrationDate
-				+ ", " + lastDeregistrationDate
-				+ ", " + studentNumber + ", "
-				+ lstStudents;
-	}
-	
-=======
+		return "Assessment: " + title;	}
+
 	public Date getDateOfAssessment() {
 		return dateOfAssessment;
 	}
@@ -137,5 +129,5 @@ public abstract class Assessment {
 	public void setTitle(String title) {
 		this.title = title;
 	}
->>>>>>> getter and setter added
+
 }

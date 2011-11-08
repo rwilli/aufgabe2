@@ -456,7 +456,7 @@ public class Course {
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-		return this.id + "\t" + this.title + "\t"
+		return this.id + "\t" + this.title + "\t\t"
 				+ sdf.format(this.firstRegistrationDate) + "\t"
 				+ sdf.format(this.lastRegistrationDate) + "\t"
 				+ sdf.format(this.lastDeregistrationDate) + "\t"
