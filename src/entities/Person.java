@@ -138,8 +138,8 @@ public abstract class Person {
 	 */
 	@Override
 	public String toString() {
-		return "Person [firstName=" + firstName + ", lastName=" + lastName
-				+ ", email=" + email + "]";
+		return this.firstName + " " + this.lastName
+				+ ", " + this.email;
 	}
 
 }

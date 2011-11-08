@@ -30,8 +30,8 @@ public class Lecturer extends Person {
 	 */
 	@Override
 	public String toString() {
-		return "Lecturer [degree=" + degree + ", firstName=" + this.getFirstName()
-				+ ", lastName=" + this.getLastName() + "]";
+		return this.degree + ". " + this.getFirstName()
+				+ " " + this.getLastName();
 	}
 
 	/* (non-Javadoc)
