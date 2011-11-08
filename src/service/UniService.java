@@ -93,11 +93,30 @@ public class UniService {
 		
 	}
 	
+	public void printAllStudentsWithMessageBox(){
+	
+		Iterator<Person> p = this.lstPersons.iterator();
+		
+		while(p.hasNext()){
+			Person p1 = p.next();
+
+			if(p1 instanceof Student){
+				Student s = (Student) p1;
+				System.out.println(s);
+				
+				System.out.println("\tMessages");
+				LinkedList<Message> messages = s.getLstMessages();
+				System.out.println("\t"+messages);
+			}
+			
+		}
+		
+	}
+	
 	/**
 	 * List all Course with their 
 	 * Lecturer/Tutor and students 
 	 */
-	
 	public void printAllCoursesWithLecturerAndStudents(){
 		System.out.println("\n-----------------AllCoursesWithLecturerAndStudents----------------");
 
