@@ -167,11 +167,15 @@ public class Student extends Person {
 	    if (ass.getFirstRegistrationDate().after(cal.getTime()) || ass.getLastRegistrationDate().before(cal.getTime())) {
 	    	throw new SubscribeException("Look at the registration time");
 	    }
-		
 		if (!ass.getLstStudents().contains(this)) {
-			ass.incrementStudentCounter();
-			ass.getLstStudents().add(this);
-			this.lst_assessments.add(ass);
+
+	    		// check maximum student number
+	 			if (ass.getStudentNumber() < ass.getMaxStudentNumber()) {
+	 				ass.incrementStudentCounter();
+	 				ass.getLstStudents().add(this);
+	 				this.lst_assessments.add(ass);
+	 			} else
+	 				throw new SubscribeException("Assessment reached maximum student number.");
 		} else {
 			throw new SubscribeException("Student already attending this assessment.");
 		}

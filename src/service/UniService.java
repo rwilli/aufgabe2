@@ -118,9 +118,9 @@ public class UniService {
 			
 		}
 	}
-	public void printAll(){
+	public void printAllCoursesWithAll(){
 
-		System.out.println("\n----------------------------All----------------------");
+		System.out.println("\n----------------------------AllCoursesWithAll----------------------");
 		Iterator<Course> iter = lstActiveCourses.iterator();
 
 		while(iter.hasNext())

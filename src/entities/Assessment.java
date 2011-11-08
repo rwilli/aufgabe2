@@ -181,13 +181,7 @@ public abstract class Assessment {
 	 */
 	@Override
 	public String toString() {
-		return "Assessment: " + title + ", "
-				+ maxStudentNumber + ", " + dateOfAssessment
-				+ ", " + firstRegistrationDate
-				+ ", " + lastRegistrationDate
-				+ ", " + lastDeregistrationDate
-				+ ", " + studentNumber + ", "
-				+ lstStudents;
+		return "Assessment: " + title;
 	}
 
 }
