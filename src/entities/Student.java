@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.HashMap;
@@ -132,6 +133,37 @@ public class Student extends Person {
 				throw new SubscribeException("Course reached maximum student number.");
 		} else {
 			throw new SubscribeException("Student already attending this course.");
+		}
+		
+		
+		/**
+		 * If Course has Groups, try to add the Student automatically to a Group,
+		 * if the Group is full, he can«t attend the course.
+		 */
+		if( !cr.getGroups().isEmpty() ){
+			
+			Iterator<Group> iter = cr.getGroups().iterator();
+			boolean flag = false;
+			
+			while(iter.hasNext()){
+				
+				Group g = iter.next();
+				
+				if(g.getStudentNumber() < g.getMaxGroupSize() ){
+					g.listAllStudents().add(this);
+					this.lst_groups.add(g);
+					flag = true;
+					break;
+				}
+			}
+			
+			if(!flag){
+				
+				throw new SubscribeException("All Groups are full");
+			}
+			
+			
+			
 		}
 	}
 	

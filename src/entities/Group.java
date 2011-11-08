@@ -92,6 +92,13 @@ public class Group {
 	public List<Student> listAllStudents() {
 		return lst_students;
 	}
+	
+	/**
+	 * Get number of students attending Course
+	 */
+	public int getStudentNumber(){
+		return this.lst_students.size();
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
