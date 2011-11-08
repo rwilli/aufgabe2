@@ -331,16 +331,14 @@ public class Test {
 		 * Case9:
 		 * Add more Students to Course2 and cancel it. 
 		 * 
-		 * Expected Output: Email send to student2 and 3
+		 * Expected Output: No Exception, instead print the MessageBoc of all Students
 		 */
 		
 		try{
 			student2.subscribe(course2);
 			student3.subscribe(course2);
-			//TODO wie erscheint Message: Email send to
 			uniService.deleteCourseFromSystem(course2, new Message("Course2 canceled!") );
 			
-			course2.cancelCourse(new Message("Course2 canceled!"));
 
 		}catch(SubscribeException e){
 			System.out.println("Case9\t"+ e.toString() );	
@@ -349,6 +347,9 @@ public class Test {
 			System.out.println("Case9\t"+ e.toString() );	
 			
 		}
+		System.out.println("-----------------Students with MessageBox----------------");
+		uniService.printAllStudentsWithMessageBox();
+		
 		
 		/* ---------- End Test: Cancel a Course with more Students ------- */
 		
