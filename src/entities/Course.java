@@ -58,6 +58,9 @@ public class Course {
 	// calendar variable
 	private Calendar cal;
 	
+	// Assessments for this Course
+	private LinkedList<Assessment> lstAssessments;
+		
 	// required Courses for the current course, can be null.
 	private LinkedList<Prerequisite> lstPrerequisite;
 
@@ -87,6 +90,8 @@ public class Course {
 		this.regType = RegistrationTypeEnum.elektronisch;
 		this.active = true;
 		cal = Calendar.getInstance();
+		this.setAllAssessment(new LinkedList<Assessment>());
+
 	}
 	
 	public Course(String title, int maxStudent, Date firstRegistrationDate,
@@ -104,6 +109,8 @@ public class Course {
 		this.active = true;
 		cal = Calendar.getInstance();
 		this.lstPrerequisite = lst;
+		this.setAllAssessment(new LinkedList<Assessment>());
+
 	}
 
 	/**
@@ -302,6 +309,31 @@ public class Course {
 	public void setInactive() {
 		this.active = false;
 	}
+	
+	/**
+	 * Returns all Assessments
+	 * @return
+	 */
+	public LinkedList<Assessment> getAllAssessments() {
+		return lstAssessments;
+	}
+
+	/**
+	 * sets all Assessments
+	 * @param lstAssessments
+	 */
+	public void setAllAssessment(LinkedList<Assessment> lstAssessments) {
+		this.lstAssessments = lstAssessments;
+	}
+	
+	/**
+	 * Adds an Assessment to the List
+	 * @param a
+	 */
+	public void addAssessment( Assessment a){
+		this.lstAssessments.add(a);
+		
+	}
 
 	/**
 	 * register student for course
@@ -455,4 +487,6 @@ public class Course {
 		return 31 * (31 * getId());
 		
 	}
+
+
 }
