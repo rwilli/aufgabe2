@@ -7,10 +7,10 @@ import java.util.LinkedList;
 
 import exception.DateException;
 
-
 /**
- * Class for Course
+ * The course class
  * 
+ * @author Gruppe222 - Gianni
  */
 public class Course {
 
@@ -335,58 +335,6 @@ public class Course {
 		
 	}
 
-	/**
-	 * register student for course
-	 * 
-	 * @param s
-	 *            the student to register
-	 * @throws AdministrationException
-	 *             if the time frame has expired or if the maximum has been
-	 *             reached
-	 */
-	
-	/*
-	public void registerStudent(Student s) throws AdministrationException {
-		
-		
-		if (firstRegistrationDate.after(cal.getTime())
-				|| lastDeregistrationDate.before(cal.getTime())) {
-			throw new AdministrationException(
-					"Registration time frame expired - Start "
-							+ firstRegistrationDate + " End: "
-							+ lastDeregistrationDate + " Actual: "
-							+ cal.getTime());
-		}
-
-		if (!lstStudents.contains(s) && studentCount <= maxStudentCount) {
-			setStudentCount(getStudentCount() + 1);
-			lstStudents.add(s);
-		} else {
-			throw new AdministrationException(
-					"Student is already attending this course or maximum student number has been reached.");
-		}
-		
-		
-	}
-	
-	
-	public void deregisterStudent(Student s) throws AdministrationException {
-       
-		Calendar cal = Calendar.getInstance();
-	    
-	    if (lastDeregistrationDate.before(cal.getTime())) {
-	    	throw new AdministrationException("Last Deregistration date is over - End: "
-							+ lastDeregistrationDate + " Actual: "
-							+ cal.getTime());
-	    }
-	    if (lstStudents.contains(s)) {
-	    	lstStudents.remove(s);
-			studentCount--;
-	    } else { 		
-	    	throw new AdministrationException("No Registration found.");  
-	    }
-	}
-	*/
 	/**
 	 * cancels the course with the given message
 	 * @param m reason for the cancel

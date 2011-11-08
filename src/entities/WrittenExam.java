@@ -3,7 +3,7 @@ package entities;
 import java.util.Date;
 
 /**
- * @author rainer
+ * @author Gianni
  *
  */
 public class WrittenExam extends Assessment {

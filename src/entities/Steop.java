@@ -6,7 +6,7 @@ package entities;
 import java.util.LinkedList;
 
 /**
- * @author rainer
+ * @author Gianni
  *
  */
 public class Steop extends Prerequisite {

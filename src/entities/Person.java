@@ -19,7 +19,7 @@ public abstract class Person {
 	private String email;
 	
 	// messagebox of the person
-	private LinkedList<Message> lst_messages = new LinkedList<Message>();
+	private LinkedList<Message> lstMessages = new LinkedList<Message>();
 	
 	/**
 	 * Getter firstname
@@ -73,65 +73,73 @@ public abstract class Person {
 	 * Informs the person about changes
 	 * @return informationtext
 	 */
-	public String inform(Message m) {
-		this.lst_messages.add(m);
-		return "Email send to " + this.email;
+	public void inform(Message m) {
+		this.lstMessages.add(m);
 	}
 	
-	/* (non-Javadoc)
+	/**
+	 * Getter lstMessages
+	 * 
+	 * @return list of messages
+	 */
+	public LinkedList<Message> getLstMessages() {
+		return lstMessages;
+	}
+
+	/*
+	 * (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result
 				+ ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result
 				+ ((lastName == null) ? 0 : lastName.hashCode());
-		
+		result = prime * result
+				+ ((lstMessages == null) ? 0 : lstMessages.hashCode());
 		return result;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		
 		if (obj == null)
 			return false;
-		
-		if (!(obj instanceof Person))
+		if (getClass() != obj.getClass())
 			return false;
-		
 		Person other = (Person) obj;
-		
 		if (email == null) {
 			if (other.email != null)
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		
 		if (firstName == null) {
 			if (other.firstName != null)
 				return false;
 		} else if (!firstName.equals(other.firstName))
 			return false;
-		
 		if (lastName == null) {
 			if (other.lastName != null)
 				return false;
 		} else if (!lastName.equals(other.lastName))
 			return false;
-		
+		if (lstMessages == null) {
+			if (other.lstMessages != null)
+				return false;
+		} else if (!lstMessages.equals(other.lstMessages))
+			return false;
 		return true;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see java.lang.Object#toString()
