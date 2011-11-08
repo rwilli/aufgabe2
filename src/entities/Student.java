@@ -176,6 +176,8 @@ public class Student extends Person {
 		} else {
 			throw new SubscribeException("Student already attending this assessment.");
 		}
+		
+		//TODO was wenn maxStudent erreicht?
 	}
 	
 	/**

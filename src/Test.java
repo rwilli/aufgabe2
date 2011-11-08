@@ -3,11 +3,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 
+import entities.Assessment;
 import entities.Course;
+import entities.DisposalExam;
 import entities.GradeTypeEnum;
 import entities.Lecturer;
 import entities.Message;
 import entities.Prerequisite;
+import entities.SpokenExam;
 import entities.Steg;
 import entities.Steop;
 import entities.Student;
@@ -142,7 +145,7 @@ public class Test {
 		 */
 		
 		
-		/* ---------- Subscribe and unsubscribe testcases  ------- */
+		/* ---------Testcase: Subscribe and unsubscribe for courses   ------- */
 
 		
 		/**
@@ -287,48 +290,95 @@ public class Test {
 		
 	
 		
-		/* ---------- Cancel a Course with more Students ------- */
+		/* ---------- Start Test: Cancel a Course with more Students ------- */
 		
 		/**
 		 * Case9:
 		 * Add more Students to Course2 and cancel it. 
 		 * 
-		 * Expected Output: Nothing
+		 * Expected Output: Email send to student2 and 3
 		 */
 		
 		try{
 			student2.subscribe(course2);
 			student3.subscribe(course2);
-			Message m = new Message("Course2 canceled!");
-			course2.cancelCourse(m);
+			//TODO wie erscheint Message: Email send to
+			uniService.deleteCourseFromSystem(course2, new Message("Course2 canceled!") );
+			
+			course2.cancelCourse(new Message("Course2 canceled!"));
 
 		}catch(SubscribeException e){
 			System.out.println("Case9\t"+ e.toString() );	
 
-		}
-
-		
-	}catch(ParseException e){
+		} catch (ServiceException e) {
+			System.out.println("Case9\t"+ e.toString() );	
 			
+		}
+		
+		/* ---------- End Test: Cancel a Course with more Students ------- */
+		
+		
+		/* ---------- Start Test: Subscribe and unsubscribe for Assessments ------- */
+		Assessment assessment1,assessment2;
+		
+		/**
+		 * Assessment1 belongs to Course1
+		 */
+		assessment1 = new DisposalExam( "DisposalExam", 2 , sdf.parse("2011-11-20"), sdf.parse("2011-11-2"),
+				sdf.parse("2011-11-19"),
+				sdf.parse("2012-11-19"));
+		
+		/**
+		 * Assessment2 belongs to Course1
+		 */
+		assessment2 = new SpokenExam( "SpokenExam", 1 , sdf.parse("2011-11-20"), sdf.parse("2011-11-2"),
+				sdf.parse("2011-11-19"),
+				sdf.parse("2012-11-19"));
+		
+		course1.addAssessment(assessment1);
+		course1.addAssessment(assessment2);
+		
+		/**
+		 * Case10:
+		 * Student1 and Student 2 are able to subscribe for Assessment1,
+		 * and Student3 to Assessment2, but  
+		 * Student3 isn«t able to subscribe for Assessment1, 
+		 * because course is full.
+		 * 
+		 * Expected Output: Course full
+		 * 
+		 */
+		try{
+			student1.subscribe(assessment1);
+			student2.subscribe(assessment1);
+			student3.subscribe(assessment2);
+			student3.subscribe(assessment1);
+		}catch(SubscribeException e){
+			System.out.println( "Case10\t" +e.toString() );	
+
+		}
+		
+		/* ---------- End Test: Subscribe and unsubscribe for Assessments ------- */
+
+		/* Print current Status of all Courses
+		 * 
+		 * Expected Output: All Courses and 
+		 * 
+		 * 			Course1 contains: Student1
+		 * 			Course3 contains: Student3	
+		 *  
+		 *  */
+		
+		uniService.printAll();
+	
+		
+		}catch(ParseException e){
+
 			e.printStackTrace();
-			
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 
-
+			}
+		
 	}
+	
 
 }
