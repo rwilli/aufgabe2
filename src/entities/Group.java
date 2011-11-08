@@ -70,9 +70,7 @@ public class Group {
 	 */
 	@Override
 	public String toString() {
-		return "Group [id=" + this.id + ", name=" + name + ", maxGroupSize="
-				+ maxGroupSize + ", tutor=" + tutor + ", lst_students="
-				+ lst_students + "]";
+		return "id= " +this.id + "\t" + this.name;
 	}
 	
 	/**

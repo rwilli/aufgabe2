@@ -126,6 +126,34 @@ public class Student extends Person {
 		if (!cr.getAllRegisteredStudents().contains(this)) {
 		    // check maximum student number
 			if (cr.getStudentCount() < cr.getMaxStudentCount()) {
+				
+				/**
+				 * If Course has Groups, try to add the Student automatically to a Group,
+				 * if the Group is full, he can«t attend the course.
+				 */
+				if( !cr.getGroups().isEmpty() ){
+					
+					Iterator<Group> iter = cr.getGroups().iterator();
+					boolean flag = false;
+					
+					while(iter.hasNext()){
+						
+						Group g = iter.next();
+						
+						if(g.getStudentNumber() < g.getMaxGroupSize() ){
+							g.listAllStudents().add(this);
+							this.lst_groups.add(g);
+							flag = true;
+							break;
+						}
+					}
+					
+					if(!flag){
+						
+						throw new SubscribeException("All Groups are full");
+					}
+				}
+				
 				cr.incrementStudentCounter();
 				cr.getAllRegisteredStudents().add(this);
 				this.lst_courses.add(cr);
@@ -136,35 +164,10 @@ public class Student extends Person {
 		}
 		
 		
-		/**
-		 * If Course has Groups, try to add the Student automatically to a Group,
-		 * if the Group is full, he can«t attend the course.
-		 */
-		if( !cr.getGroups().isEmpty() ){
-			
-			Iterator<Group> iter = cr.getGroups().iterator();
-			boolean flag = false;
-			
-			while(iter.hasNext()){
-				
-				Group g = iter.next();
-				
-				if(g.getStudentNumber() < g.getMaxGroupSize() ){
-					g.listAllStudents().add(this);
-					this.lst_groups.add(g);
-					flag = true;
-					break;
-				}
-			}
-			
-			if(!flag){
-				
-				throw new SubscribeException("All Groups are full");
-			}
+		
 			
 			
-			
-		}
+		
 	}
 	
 	/**
