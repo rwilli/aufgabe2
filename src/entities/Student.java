@@ -124,7 +124,6 @@ public class Student extends Person {
 	    // check if student is already subscribed
 		if (!cr.getAllRegisteredStudents().contains(this)) {
             // check maximum student number
-
 			if (cr.getStudentCount() < cr.getMaxStudentCount()) {
 				cr.incrementStudentCounter();
 				cr.getAllRegisteredStudents().add(this);

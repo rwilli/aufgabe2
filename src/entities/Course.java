@@ -319,6 +319,7 @@ public class Course {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * sets all Assessments
 	 * @param lstAssessments
 	 */
@@ -336,6 +337,8 @@ public class Course {
 	}
 
 	/**
+=======
+>>>>>>> 994af898dbf187f3a10ba505214fbe358f16bab9
 	 * cancels the course with the given message
 	 * @param m reason for the cancel
 	 * @throws AdministrationException if the course was already canceled before;
