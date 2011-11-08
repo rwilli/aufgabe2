@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import entities.Course;
 import entities.GradeTypeEnum;
 import entities.Lecturer;
+import entities.Message;
 import entities.Prerequisite;
 import entities.Steg;
 import entities.Steop;
@@ -39,29 +40,37 @@ public class Test {
 		 * STEOP includes Course 1 and 2  
 		 * 
 		 * Course1: STEG, RegDate Frame is now, maxNumOfStudents 1
-		 * Course2: STEOP, RegDate Frame is now, maxNumOfStudents 3
+		 * Course2: STEOP, RegDate Frame is now, maxNumOfStudents 3, STEG required
 		 * Course3: STEG and STEOP required ,RegDate Frame is now, maxNumOfStudents 10
 		 * Course4: FirstRegDate in Future,STEG and STEOP required
+		 * Course5: to simulate Case4, deRegDate is set in past. 
 		 */
-		Course course1,course2,course3,course4;
+		Course course1,course2,course3,course4,course5;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		LinkedList<Prerequisite> lstPrerequisite1 = new LinkedList<Prerequisite>();
-		LinkedList<Course> lst1 = new LinkedList<Course>();
+		LinkedList<Prerequisite> lstPrerequisite1 = new LinkedList<Prerequisite>();		
+		LinkedList<Prerequisite> lstPrerequisite2 = new LinkedList<Prerequisite>();
 		
 		try{
 			
 
 			course1 = new Course( "LVA_STEG", 1 , sdf.parse("2011-11-2"), sdf.parse("2012-11-2"),
 											sdf.parse("2012-11-2"));
-			course2 = new Course( "LVA_STEOP", 3 , sdf.parse("2011-11-2"), sdf.parse("2012-11-2"),
-											sdf.parse("2012-11-2"));
+			
 			lstPrerequisite1.add(new Steg(course1));
-			lstPrerequisite1.add(new Steop(course2));
-			course3 = new Course( "LVA_REQ_STEG_AND_STEOP", 10 , sdf.parse("2011-11-2"), sdf.parse("2012-11-2"),
+			course2 = new Course( "LVA_STEOP", 3 , sdf.parse("2011-11-2"), sdf.parse("2012-11-2"),
 											sdf.parse("2012-11-2"), lstPrerequisite1);
-			course4 = new Course( "LVA_STEG", 1 , sdf.parse("2012-11-2"), sdf.parse("2012-11-10"),
-											sdf.parse("2012-11-10"));
 		
+			lstPrerequisite2.add(new Steg(course1));
+			lstPrerequisite2.add(new Steop(course2));
+			course3 = new Course( "LVA_REQ_STEG_AND_STEOP", 10 , sdf.parse("2011-11-2"), sdf.parse("2012-11-2"),
+											sdf.parse("2012-11-2"), lstPrerequisite2);
+		
+			
+			course4 = new Course( "LVA_STEG", 1 , sdf.parse("2012-11-2"), sdf.parse("2012-11-10"),
+											sdf.parse("2012-11-10"),lstPrerequisite1);
+			
+			course5 = new Course( "LVA_STARTED", 1 , sdf.parse("2011-11-2"), sdf.parse("2012-11-10"),
+					sdf.parse("2011-11-1"));
 	
 		
 	
@@ -77,22 +86,17 @@ public class Test {
 		/**
 		 * Student2 Properties: STEG completed
 		 */
-		/* TODO set STEG and STEOP automatically */
 		
 		Student student2 = new Student("1123456", "Patrick", "Fuerst", "patrick.fuerst@inode.at");
 		student2.addGrade(course1, GradeTypeEnum.B3);
-		//student2.setHasSteg(true);
 		
 		/** 
 		 * Student3 Properties: completed STEOP and STEP
 		 */
-		/* TODO set STEG and STEOP automatically */
 		Student student3 = new Student("1099993", "Ihave", "SteogAndSteg", "steopanssteg@as.at");
 		student3.addGrade(course1, GradeTypeEnum.S1);
 		student3.addGrade(course2, GradeTypeEnum.S1);
-		//student3.setHasSteg(true);
-		//student3.setHasSteop(true);
-
+		
 	
 
 //	
@@ -191,8 +195,22 @@ public class Test {
 		
 		/**
 		 * Case4:
-		 * Student is able to register, but isn«t able to deregister
+		 * Student3 is able to register, but isn«t able to deregister
+		 * 
+		 * Expected Output: Deregistration expired
 		 */
+		try{
+			student3.subscribe(course5);
+			student3.unsubscribe(course5);
+			
+		}catch(SubscribeException e){
+			System.out.println("Case4\t"+ e.toString() );	
+
+		}
+		catch(UnsubscribeException e){
+			System.out.println("Case4\t"+ e.toString() );	
+
+		}
 		
 		/**
 		 * Case5:
@@ -233,12 +251,27 @@ public class Test {
 		
 		try{
 			student3.subscribe(course3);
+			
 
 		}catch(SubscribeException e){
 			System.out.println("Case7\t"+ e.toString() );	
 
 		}
 		
+		/**
+		 * Case8:
+		 * Student 1 is not able to register to course1, because he is already attending it.
+		 * 
+		 * Expected Output: Student already attending this Course
+		 */
+		
+		try{
+			student1.subscribe(course1);
+
+		}catch(SubscribeException e){
+			System.out.println("Case8\t"+ e.toString() );	
+
+		}
 		/* Print current Status of all Courses
 		 * 
 		 * Expected Output: All Courses and 
@@ -252,7 +285,28 @@ public class Test {
 		
 		/* ---------- Subscribe and unsubscribe testcases finished ------- */
 		
+	
 		
+		/* ---------- Cancel a Course with more Students ------- */
+		
+		/**
+		 * Case9:
+		 * Add more Students to Course2 and cancel it. 
+		 * 
+		 * Expected Output: Nothing
+		 */
+		
+		try{
+			student2.subscribe(course2);
+			student3.subscribe(course2);
+			Message m = new Message("Course2 canceled!");
+			course2.cancelCourse(m);
+
+		}catch(SubscribeException e){
+			System.out.println("Case9\t"+ e.toString() );	
+
+		}
+
 		
 	}catch(ParseException e){
 			
