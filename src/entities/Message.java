@@ -26,5 +26,14 @@ public class Message {
 	public String getMessage() {
 		return this.message;
 	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return this.message;
+	}
+	
 
 }
