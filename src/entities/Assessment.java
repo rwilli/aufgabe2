@@ -57,34 +57,74 @@ public abstract class Assessment {
 		this.setLstStudents(new LinkedList<Student>());
 	}
 	
+	/**
+	 * Getter Title
+	 * 
+	 * @return the assessment title
+	 */
 	public String getTitle() {
 		return title;
 	}
 
+	/**
+	 * Setter firstRegDate
+	 * 
+	 * @param title the title to set
+	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
+	/**
+	 * Getter maxStudentNumber
+	 * 
+	 * @return the maximum student number
+	 */
 	public int getMaxStudentNumber() {
 		return maxStudentNumber;
 	}
 
+	/**
+	 * Setter MaxStudentNumber
+	 * 
+	 * @param maxStudentNumber the maxStudentNumber to set
+	 */
 	public void setMaxStudentNumber(int maxStudentNumber) {
 		this.maxStudentNumber = maxStudentNumber;
 	}
 
+	/**
+	 * Getter DateOfAssessment
+	 * 
+	 * @return the assessment date
+	 */
 	public Date getDateOfAssessment() {
 		return dateOfAssessment;
 	}
 
+	/**
+	 * Setter DateOfAssessment
+	 * 
+	 * @param dateOfAssessment the dateOfAssessment to set
+	 */
 	public void setDateOfAssessment(Date dateOfAssessment) {
 		this.dateOfAssessment = dateOfAssessment;
 	}
 
+	/**
+	 * Getter StudentNumber
+	 * 
+	 * @return the student number
+	 */
 	public int getStudentNumber() {
 		return studentNumber;
 	}
 
+	/**
+	 * Setter StudentNumber
+	 * 
+	 * @param studentNumber the studentNumber to set
+	 */
 	public void setStudentNumber(int studentNumber) {
 		this.studentNumber = studentNumber;
 	}

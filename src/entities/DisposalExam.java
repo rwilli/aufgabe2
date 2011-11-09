@@ -3,12 +3,16 @@ package entities;
 import java.util.Date;
 
 /**
- * @author rainer
- *
+ * The DisposalExam class extends Assessment and inherits all its methods.
+ * The subtype was created for better expandability.
+ * 
+ * @author Gruppe222 - Gianni
+ * 
  */
 public class DisposalExam extends Assessment {
 
 	/**
+	 * Default constructor
 	 * 
 	 * @param title
 	 * @param maxStudentNumber
